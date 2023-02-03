@@ -30,11 +30,11 @@ function NewPost({ onAddPost }) {
     <Modal>
       <form className={classes.form} onSubmit={submitHandler}>
         <p>
-          <label htmlFor="body">Text</label>
+          <label htmlFor="body">Username</label>
           <textarea id="body" required rows={3} onChange={bodyChangeHandler} />
         </p>
         <p>
-          <label htmlFor="name">Your name</label>
+          <label htmlFor="name">Password</label>
           <input
             type="text"
             id="name"
@@ -42,11 +42,19 @@ function NewPost({ onAddPost }) {
             onChange={authorChangeHandler}
           />
         </p>
-        <p className={classes.actions}>
-          <Link to=".." type="button">
-            Cancel
+        <p className={classes.signup}>
+          <Link
+            to=".."
+            type="button"
+          >
+            Sign Up
           </Link>
-          <button>Submit</button>
+          <p className={classes.actions}>
+            <Link to=".." type="button">
+              Cancel
+            </Link>
+            <button>Login</button>
+          </p>
         </p>
       </form>
     </Modal>
