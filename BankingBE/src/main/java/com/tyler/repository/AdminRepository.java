@@ -3,6 +3,9 @@ package com.tyler.repository;
 import com.tyler.model.User;
 import org.springframework.data.mongodb.repository.MongoRepository;
 
-public interface AdminRepository extends MongoRepository <User, Long> {
+import java.util.List;
 
+public interface AdminRepository extends MongoRepository <User, Long> {
+    public User findById(long id);
+    public List<User> findAll();
 }
