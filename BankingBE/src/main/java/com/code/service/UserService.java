@@ -33,7 +33,7 @@ public class UserService {
     public ResponseEntity<String> deleteUserById(String id) {
         try {
             userRepository.deleteById(id);
-            return new ResponseEntity<String>("User was successfully deleted", HttpStatus.NO_CONTENT);
+            return new ResponseEntity<String>("User was successfully deleted", HttpStatus.OK);
         } catch(Exception e) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
