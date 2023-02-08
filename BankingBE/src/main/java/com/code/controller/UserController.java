@@ -7,36 +7,39 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+import java.util.Optional;
+
 @RestController
 @RequestMapping("/api")
 public class UserController {
 
-    @Autowired UserService userService;
+    @Autowired
+    private UserService userService;
+
+
+    @GetMapping("admin/users")
+    public List<User> getAllUsers() {
+        return userService.getAllUsers();
+    }
 
     @GetMapping("/user/{id}")
-    public User getUserById(@PathVariable("id") long id){
+    public Optional<User> getUserById(@PathVariable("id")String id) {
         return userService.getUserById(id);
     }
 
-    @PostMapping("/user")
-    public ResponseEntity<HttpStatus> createNewUser(@RequestBody User user){;
-        try{
-            userService.createNewUser(user);
-            return new ResponseEntity<>(HttpStatus.CREATED);
-        }catch (Exception e){
-            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
-        }
+    @PostMapping("admin/new-user")
+    public ResponseEntity<String> save(@RequestBody User user) {
+        return userService.save(user);
+    }
+    @DeleteMapping("admin/delete-user/{id}")
+    public ResponseEntity<String> deleteUser(@PathVariable("id") String id) {
+        return userService.deleteUserById(id);
     }
 
-    /*@PutMapping("/user/{id}")
-    public ResponseEntity<HttpStatus> updateUser(@RequestBody User user, @PathVariable long id){
-
-        try{
-            userService.updateUser(user, id);
-            return new ResponseEntity<>(HttpStatus.CREATED);
-        }catch (Exception e){
-            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
-        }
-    }*/
+    @PutMapping("/update-user/{id}")
+    public ResponseEntity<User> updateUser(@PathVariable("id") String id, @RequestBody User user) {
+        return userService.updateUser(id, user);
+    }
 
 }
