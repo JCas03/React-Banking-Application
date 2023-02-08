@@ -1,6 +1,6 @@
-package com.tyler.repository;
+package com.code.repository;
 
-import com.tyler.model.User;
+import com.code.model.User;
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.stereotype.Repository;
 

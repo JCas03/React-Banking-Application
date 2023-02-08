@@ -1,7 +1,7 @@
-package com.tyler.service;
+package com.code.service;
 
-import com.tyler.model.User;
-import com.tyler.repository.UserRepository;
+import com.code.model.User;
+import com.code.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -17,7 +17,12 @@ public class UserService {
         return userRepository.findById(id);
     }
 
-    public List<User> getAllUsers() {
-        return userRepository.findAll();
+    public void createNewUser(User user) {
+        userRepository.save(user);
     }
+
+    /*public void updateUser(User user, long id) {
+        user.setId(id);
+        userRepository.save(user);
+    }*/
 }
