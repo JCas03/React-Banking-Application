@@ -29,4 +29,9 @@ public class AccountService {
     public List<Account> getAllAccounts() {
         return accountRepository.findAll();
     }
+
+    public Account findByAccountNumber (String accountNumber) {
+        Account account = accountRepository.findByAccountNumber(accountNumber);
+        return account;
+    }
 }
