@@ -21,8 +21,8 @@ public class AccountService {
 
     public ResponseEntity<String> save(Account account) {
         accountRepository.save(account);
-        return new ResponseEntity<String>("Account Type: " + account.getAccountType() + "Account Name: " +
-                account.getAccountName() + "Account Number: " + account.getAccountNumber() +
+        return new ResponseEntity<String>("Account Type: " + account.getAccountType() + "\nAccount Name: " +
+                account.getAccountName() + "\nAccount Number: " + account.getAccountNumber() +
                 " has been created. ", HttpStatus.CREATED);
     }
 
