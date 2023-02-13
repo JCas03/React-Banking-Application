@@ -7,6 +7,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -20,6 +21,8 @@ public class AccountService {
     }
 
     public ResponseEntity<String> save(Account account) {
+        account.setAvailableBalance(0.0);
+        account.setBalanceDate(LocalDateTime.now());
         accountRepository.save(account);
         return new ResponseEntity<String>("Account Type: " + account.getAccountType() + "\nAccount Name: " +
                 account.getAccountName() + "\nAccount Number: " + account.getAccountNumber() +

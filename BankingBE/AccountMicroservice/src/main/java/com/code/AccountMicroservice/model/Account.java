@@ -16,6 +16,6 @@ public class Account {
     private String accountNumber;
     private String accountType;
     private String accountName;
-    private LocalDateTime balanceDate;
-    private BigDecimal availableBalance;
+    private LocalDateTime balanceDate = LocalDateTime.now();
+    private Double availableBalance = 0.0;
 }
