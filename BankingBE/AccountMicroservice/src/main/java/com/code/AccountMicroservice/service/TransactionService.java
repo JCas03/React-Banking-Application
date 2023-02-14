@@ -26,25 +26,11 @@ public class TransactionService {
 
         transactionRepository.save(transaction);
         double depositAmt = transaction.getDepositAmount();
-        accountData.setAvailableBalance(depositAmt);
+        double newBalance = accountData.getAvailableBalance() + depositAmt;
+        System.out.println(depositAmt + accountData.getAvailableBalance());
+        accountData.setAvailableBalance(newBalance);
+        accountRepository.save(accountData);
         return new ResponseEntity<String>("Account Number: "+ accountData.getAccountNumber() +
                 "\nDeposit Amount: " + transaction.getDepositAmount(),HttpStatus.OK);
     }
-
-    /*public ResponseEntity<Transaction> deposit(String accountNumber, Double depositAmount) {
-        Account account = accountRepository.findByAccountNumber(accountNumber);
-
-        if(accountNumber.isEmpty()) {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
-        else if (depositAmount.isNaN() || depositAmount == 0) {
-            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-        }
-        else {
-            double initialBalance = account.getAvailableBalance();
-            double newBalance = initialBalance + depositAmount;
-            account.setAvailableBalance(newBalance);
-            return new ResponseEntity<>(HttpStatus.OK);
-        }
-    }*/
 }
