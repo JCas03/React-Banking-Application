@@ -9,6 +9,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -32,5 +33,19 @@ public class TransactionService {
         accountRepository.save(accountData);
         return new ResponseEntity<String>("Account Number: "+ accountData.getAccountNumber() +
                 "\nDeposit Amount: " + transaction.getDepositAmount(),HttpStatus.OK);
+    }
+    public ResponseEntity<String> withdrawal(String accountNumber, Transaction transaction){
+        Account accountData = accountRepository.findByAccountNumber(accountNumber);
+        transaction.setTransactionDateTime(LocalDateTime.now());
+
+        transactionRepository.save(transaction);
+        double withdrawalAmt = transaction.getWithdrawalAmount();
+        double newBalance = accountData.getAvailableBalance() - withdrawalAmt;
+        accountData.setAvailableBalance(newBalance);
+
+        accountRepository.save(accountData);
+        return new ResponseEntity<String>("Account Number: "+ accountData.getAccountNumber() +
+                "\nWithdrawal Amount: " + transaction.getWithdrawalAmount()
+                + "\nDate: " + transaction.getTransactionDateTime(),HttpStatus.OK);
     }
 }

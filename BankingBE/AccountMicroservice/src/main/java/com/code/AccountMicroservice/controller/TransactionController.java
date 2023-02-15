@@ -24,4 +24,9 @@ public class TransactionController {
         return transactionService.deposit(accountNumber, transaction);
     }
 
+    @PostMapping("/withdrawal/{accountNumber}")
+    public ResponseEntity<String> withdrawal(@PathVariable("accountNumber") String accountNumber,
+                                             @RequestBody Transaction transaction) {
+        return transactionService.withdrawal(accountNumber, transaction);
+    }
 }
