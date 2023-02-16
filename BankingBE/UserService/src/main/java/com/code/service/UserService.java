@@ -16,6 +16,7 @@ public class UserService {
     @Autowired
     private UserRepository userRepository;
 
+
     public ResponseEntity<String>  save(User user) {
         userRepository.save(user);
         return new ResponseEntity<String>("User created successfully", HttpStatus.OK);
@@ -26,8 +27,9 @@ public class UserService {
     }
 
     public ResponseEntity<String> createNewUser(User user) {
+
         userRepository.save(user);
-        return new ResponseEntity<> ("User " + user.getUserName() + " with the id of " + user.getId() + " Has been created. ", HttpStatus.CREATED );
+        return new ResponseEntity<>("User " + user.getUserName() + " with the id of " + user.getId() + " Has been created. ", HttpStatus.CREATED);
     }
 
     public ResponseEntity<String> deleteUserById(String id) {
