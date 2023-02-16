@@ -1,10 +1,10 @@
 package com.code.controller;
 
-import com.code.service.UserService;
 import com.code.model.User;
+import com.code.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -19,6 +19,7 @@ public class UserController {
 
 
     @GetMapping("admin/users")
+//    @PreAuthorize("hasAuthority('SCOPE_api:admin')")
     public List<User> getAllUsers() {
         return userService.getAllUsers();
     }
@@ -29,10 +30,12 @@ public class UserController {
     }
 
     @PostMapping("admin/new-user")
+    @PreAuthorize("hasAuthority('api:admin')")
     public ResponseEntity<String> save(@RequestBody User user) {
         return userService.save(user);
     }
     @DeleteMapping("admin/delete-user/{id}")
+//    @PreAuthorize("hasAuthority('api:admin')")
     public ResponseEntity<String> deleteUser(@PathVariable("id") String id) {
         return userService.deleteUserById(id);
     }
