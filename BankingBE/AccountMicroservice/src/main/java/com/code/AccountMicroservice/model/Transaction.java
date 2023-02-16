@@ -13,7 +13,10 @@ public class Transaction {
     @Id
     private String transactionId;
     private String accountNumber;
+    private String outgoingAccountNumber;
+    private String incomingAccountNumber;
     private Double withdrawalAmount;
     private Double depositAmount;
+    private Double transferAmount;
     private LocalDateTime transactionDateTime;
 }

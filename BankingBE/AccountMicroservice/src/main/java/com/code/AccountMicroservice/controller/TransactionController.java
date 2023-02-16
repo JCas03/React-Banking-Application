@@ -29,4 +29,11 @@ public class TransactionController {
                                              @RequestBody Transaction transaction) {
         return transactionService.withdrawal(accountNumber, transaction);
     }
+
+    @PostMapping("/transfer/{fromAccountNumber}/{toAccountNumber}")
+    public ResponseEntity<String> transferFunds(@PathVariable("fromAccountNumber") String fromAccountNumber,
+                                                @PathVariable("toAccountNumber") String toAccountNumber,
+                                                @RequestBody Transaction transaction) {
+        return transactionService.transferFunds(fromAccountNumber, toAccountNumber, transaction);
+    }
 }

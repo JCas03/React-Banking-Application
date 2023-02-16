@@ -48,4 +48,24 @@ public class TransactionService {
                 "\nWithdrawal Amount: " + transaction.getWithdrawalAmount()
                 + "\nDate: " + transaction.getTransactionDateTime(),HttpStatus.OK);
     }
+
+    public ResponseEntity<String> transferFunds(String fromAccountNumber, String toAccountNumber, Transaction transaction){
+        Account fromAccountData = accountRepository.findByAccountNumber(fromAccountNumber);
+        Account toAccountData = accountRepository.findByAccountNumber(toAccountNumber);
+        transaction.setTransactionDateTime(LocalDateTime.now());
+
+        transactionRepository.save(transaction);
+        double transferAmount = transaction.getTransferAmount();
+        double fromNewBalance = fromAccountData.getAvailableBalance() - transferAmount;
+        double toNewBalance = toAccountData.getAvailableBalance() + transferAmount;
+        fromAccountData.setAvailableBalance(fromNewBalance);
+        toAccountData.setAvailableBalance(toNewBalance);
+
+        accountRepository.save(fromAccountData);
+        accountRepository.save(toAccountData);
+        return new ResponseEntity<String>("From Account Number: " + fromAccountData.getAccountNumber()
+                + "\nTo Account Number: " + toAccountData.getAccountNumber()
+                + "\nTransfer Amount: " + transaction.getTransferAmount(),HttpStatus.OK);
+    }
+
 }
