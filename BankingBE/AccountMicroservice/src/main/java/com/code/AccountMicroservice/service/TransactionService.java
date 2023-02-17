@@ -68,4 +68,7 @@ public class TransactionService {
                 + "\nTransfer Amount: " + transaction.getTransferAmount(),HttpStatus.OK);
     }
 
+    public List<Transaction> viewAllTransactions(String accountNumber) {
+        return transactionRepository.findByAccountNumber(accountNumber);
+    }
 }
