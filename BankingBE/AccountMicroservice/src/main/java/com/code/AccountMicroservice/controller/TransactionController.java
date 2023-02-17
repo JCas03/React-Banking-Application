@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/api")
 public class TransactionController {
@@ -35,5 +37,10 @@ public class TransactionController {
                                                 @PathVariable("toAccountNumber") String toAccountNumber,
                                                 @RequestBody Transaction transaction) {
         return transactionService.transferFunds(fromAccountNumber, toAccountNumber, transaction);
+    }
+
+    @GetMapping("/view-transactions/{accountNumber}")
+    public List<Transaction> viewAllTransactions(@PathVariable("accountNumber") String accountNumber) {
+        return transactionService.viewAllTransactions(accountNumber);
     }
 }
