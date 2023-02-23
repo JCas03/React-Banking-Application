@@ -1,4 +1,4 @@
-package com.code.Config;
+package com.code.AppointmentMicroservice.Config;
 
 
 import org.springframework.context.annotation.Bean;
