@@ -4,6 +4,8 @@ import com.code.AccountMicroservice.model.Account;
 import com.code.AccountMicroservice.model.Transaction;
 import com.code.AccountMicroservice.service.AccountService;
 import com.code.AccountMicroservice.service.TransactionService;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -12,6 +14,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api")
+@Api(value = "Transaction Rest Controller", tags = "REST API for Transactions")
 public class TransactionController {
 
     @Autowired
@@ -21,18 +24,21 @@ public class TransactionController {
     private TransactionService transactionService;
 
     @PostMapping("/deposit/{accountNumber}")
+    @ApiOperation(value = "Deposit", tags = "Deposit")
     public ResponseEntity<String> deposit(@PathVariable("accountNumber") String accountNumber,
                                           @RequestBody Transaction transaction){
         return transactionService.deposit(accountNumber, transaction);
     }
 
     @PostMapping("/withdrawal/{accountNumber}")
+    @ApiOperation(value = "withdrawal", tags = "withdrawal")
     public ResponseEntity<String> withdrawal(@PathVariable("accountNumber") String accountNumber,
                                              @RequestBody Transaction transaction) {
         return transactionService.withdrawal(accountNumber, transaction);
     }
 
     @PostMapping("/transfer/{fromAccountNumber}/{toAccountNumber}")
+    @ApiOperation(value = "Transfer", tags = "Transfer")
     public ResponseEntity<String> transferFunds(@PathVariable("fromAccountNumber") String fromAccountNumber,
                                                 @PathVariable("toAccountNumber") String toAccountNumber,
                                                 @RequestBody Transaction transaction) {
@@ -40,6 +46,7 @@ public class TransactionController {
     }
 
     @GetMapping("/view-transactions/{accountNumber}")
+    @ApiOperation(value = "View Transactions", tags = "ViewTransactions")
     public List<Transaction> viewAllTransactions(@PathVariable("accountNumber") String accountNumber) {
         return transactionService.viewAllTransactions(accountNumber);
     }
