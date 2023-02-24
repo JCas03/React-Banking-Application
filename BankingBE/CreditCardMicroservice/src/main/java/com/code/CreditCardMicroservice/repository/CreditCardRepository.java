@@ -10,4 +10,5 @@ import java.util.List;
 @Repository
 public interface CreditCardRepository extends MongoRepository<CreditCard, String> {
     List<CreditCard> findCardsByUsername(String userName);
+    CreditCard findCardHolderInfoByCardNumber(Long cardNumber);
 }

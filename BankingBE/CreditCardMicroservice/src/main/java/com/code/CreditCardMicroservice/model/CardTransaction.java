@@ -11,7 +11,7 @@ import java.time.LocalDateTime;
 public class CardTransaction {
 
     @Id
-    private String id;
+    private String transactionId;
     private Long cardNumber;
     private String username;
     private Double transactionAmt;

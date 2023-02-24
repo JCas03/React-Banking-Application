@@ -1,6 +1,8 @@
 package com.code.CreditCardMicroservice.service;
 
+import com.code.CreditCardMicroservice.model.CardTransaction;
 import com.code.CreditCardMicroservice.model.CreditCard;
+import com.code.CreditCardMicroservice.repository.CardTransactionRepository;
 import com.code.CreditCardMicroservice.repository.CreditCardRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -17,6 +19,9 @@ public class CreditCardService {
 
     @Autowired
     private CreditCardRepository creditCardRepository;
+
+    @Autowired
+    private CardTransactionRepository cardTransactionRepository;
 
     public ResponseEntity<String> save(CreditCard creditCard) {
         Long randomCardNumber = (long) (Math.random() * 10000000000000000L);
@@ -37,5 +42,18 @@ public class CreditCardService {
 
     public List<CreditCard> getAllCards(String userName) {
         return creditCardRepository.findCardsByUsername(userName);
+    }
+
+    public CreditCard findCardHolderInfoByCardNumber(Long cardNumber) {
+        CreditCard creditCard = creditCardRepository.findCardHolderInfoByCardNumber(cardNumber);
+        return creditCard;
+    }
+
+    public ResponseEntity<String> viewCardBalanceAndLimit(Long cardNumber) {
+        CreditCard cardData = creditCardRepository.findCardHolderInfoByCardNumber(cardNumber);
+
+        return new ResponseEntity<String>("Card Number: " + cardData.getCardNumber()
+        + "\nCard Balance: " + cardData.getCreditBalance()
+        + "\nRemaining Credit Limit: " + cardData.getCreditLimit(), HttpStatus.OK);
     }
 }

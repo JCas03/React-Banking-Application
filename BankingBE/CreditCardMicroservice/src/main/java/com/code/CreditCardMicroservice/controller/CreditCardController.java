@@ -25,4 +25,9 @@ public class CreditCardController {
     public ResponseEntity<String> save(@RequestBody CreditCard creditCard) {
         return creditCardService.save(creditCard);
     }
+
+    @GetMapping("/card-info/{cardNumber}")
+    public ResponseEntity<String> viewCardBalanceAndLimit(@PathVariable("cardNumber") Long cardNumber) {
+        return creditCardService.viewCardBalanceAndLimit(cardNumber);
+    }
 }

@@ -7,6 +7,6 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface CardTranscationRepository extends MongoRepository<CardTransaction, Long> {
+public interface CardTransactionRepository extends MongoRepository<CardTransaction, Long> {
     List<CardTransaction> findByCardNumber(Long cardNumber);
 }
