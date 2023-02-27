@@ -1,4 +1,4 @@
-package com.code.Util;
+package com.code.Config;
 
 import com.auth0.AuthenticationController;
 import com.auth0.jwk.JwkProvider;
@@ -46,8 +46,8 @@ public class AuthConfig  {
         http.csrf()
                 .disable()
                 .authorizeRequests()
-                .antMatchers("/callback", "/login", "/" ).permitAll()
-                .anyRequest().authenticated()
+                .antMatchers("/callback", "/login", "/", "/**" ).permitAll()
+                .anyRequest().permitAll()//authenticated()
                 .and()
                 .formLogin()
                 .loginPage("/login")
