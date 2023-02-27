@@ -1,6 +1,6 @@
 package com.code.controller;
 
-import com.code.Util.AuthConfig;
+import com.code.Config.AuthConfig;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.web.authentication.logout.LogoutSuccessHandler;
