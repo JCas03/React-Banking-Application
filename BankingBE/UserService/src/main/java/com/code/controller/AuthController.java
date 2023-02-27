@@ -5,7 +5,7 @@ import com.auth0.IdentityVerificationException;
 import com.auth0.Tokens;
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.interfaces.DecodedJWT;
-import com.code.Util.AuthConfig;
+import com.code.Config.AuthConfig;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.TestingAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
