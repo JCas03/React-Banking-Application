@@ -1,4 +1,4 @@
-package com.code.Config;
+package com.code.config;
 
 import com.auth0.AuthenticationController;
 import com.auth0.jwk.JwkProvider;
