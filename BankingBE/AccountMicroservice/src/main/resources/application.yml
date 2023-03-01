@@ -1,5 +1,5 @@
 app:
-message: Message has been sent Successfully..
+  message: Message has been sent Successfully..
 spring:
   rabbitmq:
     host: localhost
