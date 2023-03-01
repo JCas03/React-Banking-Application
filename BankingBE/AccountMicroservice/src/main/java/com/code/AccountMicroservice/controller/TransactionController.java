@@ -1,6 +1,5 @@
 package com.code.AccountMicroservice.controller;
 
-import com.code.AccountMicroservice.model.Account;
 import com.code.AccountMicroservice.model.Transaction;
 import com.code.AccountMicroservice.service.AccountService;
 import com.code.AccountMicroservice.service.RabbitMQSender;
@@ -19,11 +18,9 @@ import java.util.List;
 @Api(value = "Transaction Rest Controller", tags = "REST API for Transactions")
 public class TransactionController {
 
-    @Autowired
-    private RabbitMQSender rabbitMQSender;
 
-    @Value("${app.message}")
-    private String message;
+    @Autowired
+    RabbitMQSender rabbitMQSender;
 
     @Autowired
     private AccountService accountService;

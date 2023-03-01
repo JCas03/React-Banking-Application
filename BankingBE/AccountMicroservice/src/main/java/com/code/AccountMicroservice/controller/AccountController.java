@@ -2,7 +2,6 @@ package com.code.AccountMicroservice.controller;
 
 import com.code.AccountMicroservice.model.Account;
 import com.code.AccountMicroservice.service.AccountService;
-import com.code.AccountMicroservice.service.RabbitMQSender;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,7 +9,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 @RequestMapping("/api")
