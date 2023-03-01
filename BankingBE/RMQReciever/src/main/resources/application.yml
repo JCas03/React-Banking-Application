@@ -6,6 +6,6 @@ spring:
     password: guest
     port: 15672
     username: guest
-    exchange: user.exchange
-    queue: user.queue
-    routingkey: user.routingkey
+    exchange: transaction.exchange
+    queue: transaction.queue
+    routingkey: transaction.routingkey
