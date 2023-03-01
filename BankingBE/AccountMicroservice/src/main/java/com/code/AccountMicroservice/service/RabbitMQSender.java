@@ -1,6 +1,7 @@
 package com.code.AccountMicroservice.service;
 
 import com.code.AccountMicroservice.model.Account;
+import com.code.AccountMicroservice.model.Transaction;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -18,7 +19,7 @@ public class RabbitMQSender {
     private String exchange;
     @Value("${spring.rabbitmq.routingkey}")
     private String routingkey;
-    public void send(Account account){
-        rabbitTemplate.convertAndSend(exchange,routingkey, account);
+    public void send(Transaction transaction){
+        rabbitTemplate.convertAndSend(exchange,routingkey, transaction);
     }
 }

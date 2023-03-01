@@ -1,6 +1,7 @@
 package com.code.AccountMicroservice.controller;
 
 import com.code.AccountMicroservice.model.Account;
+import com.code.AccountMicroservice.model.Transaction;
 import com.code.AccountMicroservice.service.RabbitMQSender;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -21,8 +22,8 @@ public class ProducerController {
     private String message;
 
     @PostMapping(value = "user")
-    public String publishUserDetails(@RequestBody Account account) {
-        rabbitMQSender.send(account);
+    public String publishUserDetails(@RequestBody Transaction transaction) {
+        rabbitMQSender.send(transaction);
         return message;
     }
 }
