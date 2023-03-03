@@ -1,12 +1,13 @@
 package com.code.AccountMicroservice.controller;
 
-import com.code.AccountMicroservice.model.Account;
 import com.code.AccountMicroservice.model.Transaction;
 import com.code.AccountMicroservice.service.AccountService;
+import com.code.AccountMicroservice.service.RabbitMQSender;
 import com.code.AccountMicroservice.service.TransactionService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -16,6 +17,10 @@ import java.util.List;
 @RequestMapping("/api")
 @Api(value = "Transaction Rest Controller", tags = "REST API for Transactions")
 public class TransactionController {
+
+
+    @Autowired
+    RabbitMQSender rabbitMQSender;
 
     @Autowired
     private AccountService accountService;
@@ -27,6 +32,7 @@ public class TransactionController {
     @ApiOperation(value = "Deposit", tags = "Deposit")
     public ResponseEntity<String> deposit(@PathVariable("accountNumber") String accountNumber,
                                           @RequestBody Transaction transaction){
+        rabbitMQSender.send(transaction);
         return transactionService.deposit(accountNumber, transaction);
     }
 

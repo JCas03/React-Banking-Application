@@ -1,5 +1,7 @@
 package com.code.AccountMicroservice.model;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 import org.springframework.data.annotation.Id;
@@ -9,6 +11,7 @@ import java.time.LocalDateTime;
 
 @Document
 @Data
+@JsonIdentityInfo(generator = ObjectIdGenerators.IntSequenceGenerator.class, property = "@id", scope = Transaction.class)
 public class Transaction {
 
     @Id
