@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api")
+@RequestMapping("/accms")
 @Api(value = "Transaction Rest Controller", tags = "REST API for Transactions")
 public class TransactionController {
 

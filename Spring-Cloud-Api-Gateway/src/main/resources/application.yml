@@ -15,16 +15,16 @@ spring:
         - id: userService
           uri: http://localhost:8081/
           predicates:
-            - Path=/**
+            - Path=/userms/**
         - id: accountService
           uri: http://localhost:8082/
           predicates:
-            - Path=/**
+            - Path=/accms/**
         - id: appointmentService
           uri: http://localhost:8083/
           predicates:
-            - Path=/**
+            - Path=/appms/**
         - id: creditCardService
           uri: http://localhost:8084/
           predicates:
-            - Path=/**
+            - Path=/ccms/**

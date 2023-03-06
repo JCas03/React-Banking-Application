@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api")
+@RequestMapping("/ccms")
 @Api(value = "Credit Card Controller", tags = "REST API for Credit Card")
 public class CreditCardController {
 

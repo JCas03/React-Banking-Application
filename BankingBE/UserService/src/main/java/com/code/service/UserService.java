@@ -53,6 +53,7 @@ public class UserService {
             _user.setUserName(user.getUserName());
             _user.setFirstName(user.getFirstName());
             _user.setLastName(user.getLastName());
+            _user.setEmail(user.getEmail());
             _user.setPassword(user.getPassword());
             return new ResponseEntity<>(userRepository.save(_user), HttpStatus.OK);
         } else {
