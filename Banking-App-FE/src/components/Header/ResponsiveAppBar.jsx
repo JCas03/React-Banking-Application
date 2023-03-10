@@ -39,10 +39,10 @@ const Header = () => {
                 value={value}
                 onChange={(e, value) => setValue(value)}
               >
-                <Tab label="Home" />
-                <Tab label="Account Services" />
-                <Tab label="Card Services" />
-                <Tab label="Contact" />
+                <Tab label="Home" href= "/" />
+                <Tab label="Account Services" href="/account-services" />
+                <Tab label="Card Services" href="/card-services"/>
+                <Tab label="Contact" href="/contact" />
               </Tabs>
               <Button sx={{ marginLeft: "auto" }} variant="contained">
                 Login
