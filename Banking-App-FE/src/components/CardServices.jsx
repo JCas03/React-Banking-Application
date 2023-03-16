@@ -1,9 +1,24 @@
-import React from 'react';
+
+import React, { useEffect, useState } from 'react';
 import { Card, CardContent, Grid, Typography, CardActions } from "@mui/material";
 import { Box, Container } from "@mui/system";
 import Button from '@mui/material/Button';
+import axios from 'axios';
 
 export default function CardServices() {
+
+  const [cards, setCards] = useState([])
+
+  useEffect(() => {
+    loadCards();
+  }, []);
+
+  const loadCards = async()=> { 
+    const result = await axios.get("http://localhost:8080/userms/admin/users")
+    console.log(result.data);
+  }
+
+
   return (
     <Box>
       <Grid container spacing = {2}>
@@ -46,6 +61,7 @@ export default function CardServices() {
                 Most Recent Transaction
                 <br />
                 Transaction ID: xxxxxxxxxxxx $321 at Place_Name
+
               </Typography>
             </CardContent>
           <CardActions>

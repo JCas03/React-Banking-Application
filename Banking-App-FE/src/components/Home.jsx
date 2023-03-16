@@ -1,3 +1,4 @@
+
 import React from "react";
 import Button from "@material-ui/core/Button";
 import Card from "@material-ui/core/Card";
@@ -12,30 +13,37 @@ import MaterialLink from "@material-ui/core/Link";
 import { Link } from "react-router-dom";
 import { grey } from "@mui/material/colors";
 
+
 function Copyright() {
   return (
     <Typography variant="body2" color="textSecondary" align="center">
+
       {"Copyright © "}
       <MaterialLink component={Link} to="/" color="inherit">
         Binary Bank
       </MaterialLink>{" "}
       {new Date().getFullYear()}
       {"."}
+
     </Typography>
   );
 }
 
 const useStyles = makeStyles((theme) => ({
+
   "@global": {
     a: {
       textDecoration: "none",
+
     },
   },
   icon: {
     marginRight: theme.spacing(2),
   },
   heroContent: {
+
     backgroundColor: grey,
+
     padding: theme.spacing(8, 0, 6),
   },
   heroButtons: {
@@ -46,23 +54,29 @@ const useStyles = makeStyles((theme) => ({
     paddingBottom: theme.spacing(8),
   },
   card: {
+
     height: "100%",
     display: "flex",
     flexDirection: "column",
   },
   cardMedia: {
     paddingTop: "56.25%", // 16:9
+
   },
   cardContent: {
     flexGrow: 1,
   },
   footer: {
+
     backgroundColor: grey,
+
     padding: theme.spacing(6),
   },
 }));
 
+
 const cards = [1, 2, 3, 4];
+
 
 export default function Album() {
   const classes = useStyles();
@@ -87,14 +101,18 @@ export default function Album() {
                 <Grid item>
                   <Link to="/account-services">
                     <Button variant="contained" color="primary">
+
                       Account Dashboard
+
                     </Button>
                   </Link>
                 </Grid>
                 <Grid item>
                   <Link to="/card-services">
                     <Button variant="outlined" color="primary">
+
                       Credit Card Dashboard
+
                     </Button>
                   </Link>
                 </Grid>
@@ -126,6 +144,7 @@ export default function Album() {
                   </CardContent>
                   <CardActions>
                     <Button size="small">View Account</Button>
+
                   </CardActions>
                 </Card>
               </Grid>
@@ -135,7 +154,9 @@ export default function Album() {
       </main>
       {/* Footer */}
       <footer className={classes.footer}>
+
         <Typography variant="h6" align="center" gutterBottom></Typography>
+
         <Typography
           variant="subtitle1"
           align="center"
@@ -149,4 +170,6 @@ export default function Album() {
       {/* End footer */}
     </React.Fragment>
   );
+
 }
+
