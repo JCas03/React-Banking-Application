@@ -14,6 +14,7 @@ import java.util.Optional;
 @RestController
 @Api(value = "User Rest Controller", tags = "REST API for User")
 @RequestMapping("/userms")
+@CrossOrigin(origins = "http://127.0.0.1:5173/")
 public class UserController {
 
     @Autowired
