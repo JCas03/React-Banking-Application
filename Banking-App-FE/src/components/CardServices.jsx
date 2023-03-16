@@ -1,3 +1,4 @@
+
 import React, { useEffect, useState } from 'react';
 import { Card, CardContent, Grid, Typography, CardActions } from "@mui/material";
 import { Box, Container } from "@mui/system";
@@ -16,6 +17,7 @@ export default function CardServices() {
     const result = await axios.get("http://localhost:8080/userms/admin/users")
     console.log(result.data);
   }
+
 
   return (
     <Box>
@@ -58,7 +60,8 @@ export default function CardServices() {
               <Typography variant="body2">
                 Most Recent Transaction
                 <br />
-                Transaction ID: xxxxxxxxxxxx $123 at Place_Name
+                Transaction ID: xxxxxxxxxxxx $321 at Place_Name
+
               </Typography>
             </CardContent>
           <CardActions>
