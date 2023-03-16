@@ -55,7 +55,7 @@ export default function AccountService() {
                 </Table>
               </TableContainer>
             </CardContent>
-              <Link className="tlink" underline="hover" href="/checkings-transactions">See all Transactions</Link>
+              <Link className="tlink" underline="hover" href="/all-transactions">See all Transactions</Link>
           </Card>
         </Grid>
 
@@ -93,7 +93,7 @@ export default function AccountService() {
                 </Table>
               </TableContainer>
             </CardContent>
-            <Link className="tlink" underline="hover" href="/savings-transactions">See all Transactions</Link>
+            <Link className="tlink" underline="hover" href="/all-transactions">See all Transactions</Link>
           </Card>
         </Grid>
       </Grid>

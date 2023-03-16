@@ -6,8 +6,8 @@ import Home from './components/Home'
 import Card from './components/CardServices'
 import AccountService from './components/AccountServices'
 import Contact from './components/ContactPage'
-import CheckingsTransaction from './components/CheckingsTransactions'
-import SavingsTransactions from './components/SavingsTransactions'
+import Transactions from './components/Transactions'
+
 
 function App() {
   return (
@@ -18,8 +18,7 @@ function App() {
         <Route path="/card-services" element = {<Card/>} />
         <Route path="/account-services" element = {<AccountService/>} />
         <Route path="/contact" element = {<Contact/>} />
-        <Route path="/checkings-transactions" element = {<CheckingsTransaction/>}/>
-        <Route path="/savings-transactions" element = {<SavingsTransactions/>}/>
+        <Route path="/all-transactions" element = {<Transactions/>}/>
       </Routes>
     </BrowserRouter>
   )
