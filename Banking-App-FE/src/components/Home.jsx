@@ -1,41 +1,49 @@
-import React from 'react';
-import Button from '@material-ui/core/Button';
-import Card from '@material-ui/core/Card';
-import CardActions from '@material-ui/core/CardActions';
-import CardContent from '@material-ui/core/CardContent';
-import CardMedia from '@material-ui/core/CardMedia';
-import Grid from '@material-ui/core/Grid';
-import Typography from '@material-ui/core/Typography';
-import { makeStyles } from '@material-ui/core/styles';
-import Container from '@material-ui/core/Container';
-import MaterialLink from '@material-ui/core/Link';
-import { Link } from 'react-router-dom';
+
+import React from "react";
+import Button from "@material-ui/core/Button";
+import Card from "@material-ui/core/Card";
+import CardActions from "@material-ui/core/CardActions";
+import CardContent from "@material-ui/core/CardContent";
+import CardMedia from "@material-ui/core/CardMedia";
+import Grid from "@material-ui/core/Grid";
+import Typography from "@material-ui/core/Typography";
+import { makeStyles } from "@material-ui/core/styles";
+import Container from "@material-ui/core/Container";
+import MaterialLink from "@material-ui/core/Link";
+import { Link } from "react-router-dom";
+import { grey } from "@mui/material/colors";
 
 
 function Copyright() {
   return (
     <Typography variant="body2" color="textSecondary" align="center">
-      {'Copyright © '}
+
+      {"Copyright © "}
       <MaterialLink component={Link} to="/" color="inherit">
         Binary Bank
-      </MaterialLink>{' '}
+      </MaterialLink>{" "}
       {new Date().getFullYear()}
-      {'.'}
+      {"."}
+
     </Typography>
   );
 }
 
 const useStyles = makeStyles((theme) => ({
-  '@global': {
+
+  "@global": {
     a: {
-      textDecoration: 'none',
+      textDecoration: "none",
+
     },
   },
   icon: {
     marginRight: theme.spacing(2),
   },
   heroContent: {
-    backgroundColor: theme.palette.background.paper,
+
+    backgroundColor: grey,
+
     padding: theme.spacing(8, 0, 6),
   },
   heroButtons: {
@@ -46,23 +54,29 @@ const useStyles = makeStyles((theme) => ({
     paddingBottom: theme.spacing(8),
   },
   card: {
-    height: '100%',
-    display: 'flex',
-    flexDirection: 'column',
+
+    height: "100%",
+    display: "flex",
+    flexDirection: "column",
   },
   cardMedia: {
-    paddingTop: '56.25%', // 16:9
+    paddingTop: "56.25%", // 16:9
+
   },
   cardContent: {
     flexGrow: 1,
   },
   footer: {
-    backgroundColor: theme.palette.background.paper,
+
+    backgroundColor: grey,
+
     padding: theme.spacing(6),
   },
 }));
 
-const cards = [1, 2, 3];
+
+const cards = [1, 2, 3, 4];
+
 
 export default function Album() {
   const classes = useStyles();
@@ -85,16 +99,20 @@ export default function Album() {
             <div className={classes.heroButtons}>
               <Grid container spacing={2} justifyContent="center">
                 <Grid item>
-                  <Link to="/AccountDashboard">
+                  <Link to="/account-services">
                     <Button variant="contained" color="primary">
-                    Account Dashboard
+
+                      Account Dashboard
+
                     </Button>
                   </Link>
                 </Grid>
                 <Grid item>
-                  <Link to="/CreditCardDashboard">
+                  <Link to="/card-services">
                     <Button variant="outlined" color="primary">
-                    Credit Card Dashboard
+
+                      Credit Card Dashboard
+
                     </Button>
                   </Link>
                 </Grid>
@@ -106,28 +124,27 @@ export default function Album() {
           {/* End hero unit */}
           <Grid container spacing={4}>
             {cards.map((card) => (
-              <Grid item key={card} xs={12} sm={6} md={4}>
-                <Card className={classes.card}>
-                  <CardMedia
-                    className={classes.cardMedia}
-                    image="https://source.unsplash.com/random"
-                    title="Image title"
-                  />
-                  <CardContent className={classes.cardContent}>
-                    <Typography gutterBottom variant="h5" component="h2">
-                      Account
+              <Grid item xs={6}>
+                <Card sx={{ minWidth: 275 }}>
+                  <CardContent>
+                    <Typography
+                      sx={{ fontSize: 12 }}
+                      color="text.secondary"
+                      gutterBottom
+                    >
+                      Current Balance
                     </Typography>
-                    <Typography>
-                      This is where the account info will go
+                    <Typography variant="h4" component="div">
+                      $9xxx.xx
+                    </Typography>
+                    <Typography variant="body2">
+                      Account - Number
+                      <br />
                     </Typography>
                   </CardContent>
                   <CardActions>
-                    <Button size="small" color="primary">
-                      View
-                    </Button>
-                    <Button size="small" color="primary">
-                      Edit
-                    </Button>
+                    <Button size="small">View Account</Button>
+
                   </CardActions>
                 </Card>
               </Grid>
@@ -137,9 +154,9 @@ export default function Album() {
       </main>
       {/* Footer */}
       <footer className={classes.footer}>
-        <Typography variant="h6" align="center" gutterBottom>
-          Footer
-        </Typography>
+
+        <Typography variant="h6" align="center" gutterBottom></Typography>
+
         <Typography
           variant="subtitle1"
           align="center"
@@ -153,4 +170,6 @@ export default function Album() {
       {/* End footer */}
     </React.Fragment>
   );
+
 }
+
