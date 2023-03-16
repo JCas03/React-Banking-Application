@@ -6,6 +6,8 @@ import Home from './components/Home'
 import Card from './components/CardServices'
 import AccountService from './components/AccountServices'
 import Contact from './components/ContactPage'
+import Transactions from './components/Transactions'
+
 
 function App() {
   return (
@@ -16,6 +18,7 @@ function App() {
         <Route path="/card-services" element = {<Card/>} />
         <Route path="/account-services" element = {<AccountService/>} />
         <Route path="/contact" element = {<Contact/>} />
+        <Route path="/all-transactions" element = {<Transactions/>}/>
       </Routes>
     </BrowserRouter>
   )

@@ -1,0 +1,12 @@
+.accountCard{
+   background-color: #063970 !important;
+}
+.maintext{
+    color: #cfd8dc;
+}
+.tlink{
+    color: #cfd8dc !important;
+    display: flex;
+    justify-content: flex-end;
+    margin-right: 3% !important;
+}
