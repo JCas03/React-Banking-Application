@@ -28,3 +28,7 @@ spring:
           uri: http://localhost:8084/
           predicates:
             - Path=/ccms/**
+
+web:
+  cors:
+    allowed-origin: "http://127.0.0.1:5173/"

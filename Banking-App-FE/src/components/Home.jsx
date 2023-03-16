@@ -85,14 +85,14 @@ export default function Album() {
             <div className={classes.heroButtons}>
               <Grid container spacing={2} justifyContent="center">
                 <Grid item>
-                  <Link to="/AccountDashboard">
+                  <Link to="/account-services">
                     <Button variant="contained" color="primary">
                     Account Dashboard
                     </Button>
                   </Link>
                 </Grid>
                 <Grid item>
-                  <Link to="/CreditCardDashboard">
+                  <Link to="/card-services">
                     <Button variant="outlined" color="primary">
                     Credit Card Dashboard
                     </Button>
