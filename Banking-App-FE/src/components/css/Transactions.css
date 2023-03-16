@@ -1,0 +1,18 @@
+.tableHeader{
+    background-color: #063970 !important;
+}
+.headerText{
+    color: #cfd8dc !important;
+    font-size: medium !important ;
+    text-align: center !important;
+}
+.tableRow{
+    text-align: center !important;
+}
+.titleText{
+    color: #cfd8dc !important;
+    text-align: center !important;
+}
+.tableBody{
+    background-color: #cfd8dc !important;
+}

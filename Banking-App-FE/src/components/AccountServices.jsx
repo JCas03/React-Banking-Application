@@ -69,7 +69,7 @@ export default function AccountService() {
                 $9999.99
               </Typography>
               <TableContainer component={Paper}>
-                <Table>
+                <Table >
                   <TableHead>
                     <TableRow>
                       <TableCell>Recent Transactions</TableCell>
