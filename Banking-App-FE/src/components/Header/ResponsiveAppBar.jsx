@@ -11,6 +11,24 @@ import {
 } from "@mui/material";
 import AccountBalanceIcon from '@mui/icons-material/AccountBalance';;
 import DrawerComp from "./Drawer";
+import { useAuth0 } from "@auth0/auth0-react";
+
+const LoginButton = () => {
+  const { loginWithRedirect } = useAuth0();
+
+  return <Button onClick={() => loginWithRedirect()} sx={{ marginLeft: "auto" }} variant="contained">Log In</Button>;
+};
+const LogoutButton = () => {
+  const { logout } = useAuth0();
+
+  return (
+    <Button onClick={() => logout({ logoutParams: { returnTo: window.location.origin } })} sx={{ marginLeft: "10px" }} variant="contained">
+      Log Out
+    </Button>
+  );
+};
+
+
 const Header = () => {
   const [value, setValue] = useState();
   const theme = useTheme();
@@ -44,12 +62,8 @@ const Header = () => {
                 <Tab label="Card Services" href="/card-services"/>
                 <Tab label="Contact" href="/contact" />
               </Tabs>
-              <Button sx={{ marginLeft: "auto" }} variant="contained">
-                Login
-              </Button>
-              <Button sx={{ marginLeft: "10px" }} variant="contained">
-                SignUp
-              </Button>
+              <LoginButton/>
+              <LogoutButton/>
             </>
           )}
         </Toolbar>

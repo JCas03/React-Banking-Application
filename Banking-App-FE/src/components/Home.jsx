@@ -12,6 +12,7 @@ import Container from "@material-ui/core/Container";
 import MaterialLink from "@material-ui/core/Link";
 import { Link } from "react-router-dom";
 import { grey } from "@mui/material/colors";
+import { useAuth0 } from "@auth0/auth0-react";
 
 
 function Copyright() {
@@ -28,6 +29,28 @@ function Copyright() {
     </Typography>
   );
 }
+
+const Profile = () => {
+  const { user, isAuthenticated, isLoading } = useAuth0();
+
+  if (isLoading) {
+    return <div>Loading ...</div>;
+  }
+
+  return (
+    isAuthenticated && (
+      <Typography
+              component="h1"
+              variant="h2"
+              align="center"
+              color="textPrimary"
+              gutterBottom
+            >
+              Welcome, {user.name}
+            </Typography>
+    )
+  );
+};
 
 const useStyles = makeStyles((theme) => ({
 
@@ -87,15 +110,7 @@ export default function Album() {
         {/* Hero unit */}
         <div className={classes.heroContent}>
           <Container maxWidth="sm">
-            <Typography
-              component="h1"
-              variant="h2"
-              align="center"
-              color="textPrimary"
-              gutterBottom
-            >
-              Welcome, User
-            </Typography>
+            <Profile/>
             <div className={classes.heroButtons}>
               <Grid container spacing={2} justifyContent="center">
                 <Grid item>
