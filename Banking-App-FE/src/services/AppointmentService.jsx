@@ -14,3 +14,4 @@ class AppointmentService {
         return axios.delete(`http://localhost:8080/appms/delete-appointment/${username}`);
     }
 }
+export default new AppointmentService();

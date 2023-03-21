@@ -14,3 +14,4 @@ class AccountService {
         return axios.get(`http://localhost:8080/accms/account/${accountNumber}`);
     }
 }
+export default new AccountService();

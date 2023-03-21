@@ -14,6 +14,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/ccms")
 @Api(value = "Credit Card Controller", tags = "REST API for Credit Card")
+@CrossOrigin(origins = "http://127.0.0.1:5173/")
 public class CreditCardController {
 
     @Autowired

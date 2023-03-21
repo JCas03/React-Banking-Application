@@ -20,4 +20,9 @@ class UserService {
     updateUser(id,user) {
         return axios.put(`http://localhost:8080/userms/update-user/${id}`, user);
     }
+
+    getUserByEmail(email) {
+        return axios.get(`http://localhost:8080/userms/check-user-email/${email}`);
+    }
 }
+export default new UserService();
