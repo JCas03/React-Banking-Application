@@ -7,10 +7,13 @@ import CardService from "../services/CardService";
 import UserService from '../services/UserService';
 import { useAuth0 } from '@auth0/auth0-react';
 
+
 export default function CardServices() {
 
   const {user} = useAuth0();
   const [cards, setCards] = useState([])
+  const [emailData, setEmailData] = useState([])
+  
 
   // useEffect( () => {
   //   const {user} = useAuth0();
@@ -18,18 +21,18 @@ export default function CardServices() {
   // }, []);
 
   const loadCards = async()=> {
-    const userRes = await UserService.getUserByEmail(user.email);
-    const result = await CardService.getCardsByUsername(user.name);
-    const uName = user.name
-    console.log(userRes.data.username);
-    const users = userRes.map(u =>
-      <div>
-        <p>{u.id}</p>
-        <p>{u.name}</p>
-        <p>{u.email}</p>
-      </div>
-      )
-    console.log(result.data);
+    const resData = await UserService.getUserByEmail(user.email)
+    console.log(resData);
+    console.log(resData.data.userName);
+    // setEmailData();
+    // console.log(emailData);
+    // emailData.Object.map((emailData)=>{
+    //   userName = emailData.userName
+    // })
+    // console.log(userName);
+    // const result = await CardService.getCardsByUsername(emailData.userName);
+    // const uName = user.name
+    // console.log(result.data);
   }
   loadCards();
 
@@ -41,7 +44,6 @@ export default function CardServices() {
             <CardContent>
               <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
                 CreditCard Name
-                {this.users}
               </Typography>
               <Typography variant="h5" component="div">
                 Card - Number
