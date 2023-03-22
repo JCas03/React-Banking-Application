@@ -22,8 +22,14 @@ export default function CardServices() {
 
   const loadCards = async()=> {
     const resData = await UserService.getUserByEmail(user.email)
-    console.log(resData);
+    let uName = resData.data.userName;
+    const cardData = await CardService.getCardsByUsername(uName)
+    let cardNumber = cardData.data[0].cardNumber;
+    
+
     console.log(resData.data.userName);
+    console.log(cardData.data[0]);
+    console.log(cardNumber);
     // setEmailData();
     // console.log(emailData);
     // emailData.Object.map((emailData)=>{
