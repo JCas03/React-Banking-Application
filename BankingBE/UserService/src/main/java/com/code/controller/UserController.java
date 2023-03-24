@@ -59,6 +59,9 @@ public class UserController {
     public User getUserByEmail(@PathVariable("email")String email) {
         return userService.getUserByEmail(email);
     }
+
+
+
     /*public ResponseEntity<User> getUserByEmail(@PathVariable String email) {
         Optional<User> user = Optional.ofNullable(userService.getUserByEmail(email));
         if(!user.isPresent()) {
