@@ -13,5 +13,21 @@ class AccountService {
     getAccountByAccountNumber(accountNumber) {
         return axios.get(`http://localhost:8080/accms/account/${accountNumber}`);
     }
+
+    deposit(accountNumber, transaction) {
+        return axios.post(`http://localhost:8080/accms/deposit/${accountNumber}`, transaction);
+    }
+
+    withdrawal(accountNumber, transaction) {
+        return axios.post(`http://localhost:8080/accms/withdrawal/${accountNumber}`, transaction);
+    }
+
+    transferFunds(fromAccountNumber, toAccountNumber, transaction) {
+        return axios.post(`http://localhost:8080/accms/transfer/${fromAccountNumber}/${toAccountNumber}`, transaction);
+    }
+
+    viewAllTransactionsOnAccount(accountNumber) {
+        return axios.get(`http://localhost:8080/accms/view-transactions/${accountNumber}`);
+    }
 }
 export default new AccountService();

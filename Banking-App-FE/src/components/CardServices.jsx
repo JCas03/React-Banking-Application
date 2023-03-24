@@ -13,6 +13,7 @@ export default function CardServices() {
   const {user} = useAuth0();
   const [cards, setCards] = useState([])
   const [emailData, setEmailData] = useState([])
+  const [cardData, setCardData] = useState([])
   
 
   // useEffect( () => {
@@ -20,16 +21,29 @@ export default function CardServices() {
     
   // }, []);
 
-  const loadCards = async()=> {
+  const loadCards = async() => {
     const resData = await UserService.getUserByEmail(user.email)
     let uName = resData.data.userName;
-    const cardData = await CardService.getCardsByUsername(uName)
-    let cardNumber = cardData.data[0].cardNumber;
+
+    await CardService.getCardsByUsername(uName).then((cardData) => setCardData(cardData));
+    // let cardNumber = cardData.data[0].cardNumber;
+    // let creditBalance = cardData.data[0].creditBalance;
+    // let creditLimit = cardData.data[0].creditLimit;
+    
+    // const transactionData = await CardService.viewCardTransactions(cardNumber)
+    // let lastTransactionId = transactionData.data.slice(-1)[0].transactionId;
+    // let lastTransactionAmt = transactionData.data.slice(-1)[0].transactionAmt;
     
 
-    console.log(resData.data.userName);
-    console.log(cardData.data[0]);
-    console.log(cardNumber);
+    // console.log(resData.data.userName);
+    console.log(cardData.data[0].cardNumber);
+    // console.log(cardNumber);
+    // console.log(transactionData.data.slice(-1)[0]);
+    // console.log("Card Number: " + cardNumber);
+    // console.log("Credit Balance: " + creditBalance);
+    // console.log("Credit Limit: " + creditLimit);
+    // console.log("Last Transaction ID: " + lastTransactionId);
+    // console.log("Last Transaction Amount: " + lastTransactionAmt);
     // setEmailData();
     // console.log(emailData);
     // emailData.Object.map((emailData)=>{
@@ -40,7 +54,10 @@ export default function CardServices() {
     // const uName = user.name
     // console.log(result.data);
   }
-  loadCards();
+  useEffect( () => {
+    loadCards();
+  }, []);
+  
 
   return (
     <Box>
@@ -52,7 +69,7 @@ export default function CardServices() {
                 CreditCard Name
               </Typography>
               <Typography variant="h5" component="div">
-                Card - Number
+                {cardData.data[0].cardNumber}
               </Typography>
               <Typography sx={{ mb: 1.5 }} color="text.secondary">
                 Credit Balance
