@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Button from "@material-ui/core/Button";
 import Card from "@material-ui/core/Card";
 import CardActions from "@material-ui/core/CardActions";
@@ -12,6 +12,7 @@ import MaterialLink from "@material-ui/core/Link";
 import { Link } from "react-router-dom";
 import { grey } from "@mui/material/colors";
 import { useAuth0 } from "@auth0/auth0-react";
+import UserService from "../services/UserService";
 
 function Copyright() {
   return (
@@ -26,9 +27,17 @@ function Copyright() {
   );
 }
 
+// const newUser = await UserService.getUserByEmail(email);
+
+
 const Profile = () => {
   const { user, isAuthenticated, isLoading } = useAuth0();
-
+  const getUserData = async () => {
+    const userRes = await UserService.getUserByEmail(user.email);
+    console.log(userRes.data);
+  }
+  getUserData();
+  
   if (isLoading) {
     return <div>Loading ...</div>;
   }

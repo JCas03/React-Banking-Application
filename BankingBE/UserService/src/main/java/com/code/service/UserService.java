@@ -41,6 +41,20 @@ public class UserService {
         }
     }
 
+    public User getUserByEmail(String email) {
+        List<User> userList = userRepository.findAll();
+        User newUser = new User();
+        for(User user : userList) {
+            if(user.getEmail() != null) {
+                if((user.getEmail().toString()).equals(email)) {
+                    newUser = user;
+                    return user;
+                }
+            }
+        }
+        return null;
+    }
+
     public List<User> getAllUsers() {
         return userRepository.findAll();
     }
