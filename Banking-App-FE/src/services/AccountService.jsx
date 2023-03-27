@@ -14,6 +14,10 @@ class AccountService {
         return axios.get(`http://localhost:8080/accms/account/${accountNumber}`);
     }
 
+    getAllAccountsByAccountNumber(accountNumber) {
+        return axios.get(`http://localhost:8080/accms/all-accounts/${accountNumber}`);
+    }
+
     deposit(accountNumber, transaction) {
         return axios.post(`http://localhost:8080/accms/deposit/${accountNumber}`, transaction);
     }
