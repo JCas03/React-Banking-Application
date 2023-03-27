@@ -38,6 +38,7 @@ export default function AccountServices() {
   const loadAccounts = async () => {
     let accNum = 13;
     const accData = await AccountService.getAccountByAccountNumber(accNum);
+    console.log(accData.data);
     setAccName(accData.data.accountName);
     setAccType(accData.data.accountType);
     setAvailableBalance(accData.data.availableBalance);
@@ -77,14 +78,6 @@ export default function AccountServices() {
                 >
                   {accName}
                 </Typography>
-                {/* <Typography
-                  className="maintext"
-                  align="left"
-                  variant="h5"
-                  gutterBottom
-                >
-                  
-                </Typography> */}
                 <Typography
                   className="maintext"
                   gutterBottom
