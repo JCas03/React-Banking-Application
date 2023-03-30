@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Button from "@material-ui/core/Button";
 import Card from "@material-ui/core/Card";
 import CardActions from "@material-ui/core/CardActions";
@@ -12,6 +12,8 @@ import MaterialLink from "@material-ui/core/Link";
 import { Link } from "react-router-dom";
 import { grey } from "@mui/material/colors";
 import { useAuth0 } from "@auth0/auth0-react";
+import UserService from "../services/UserService";
+import Clock from "./Clock";
 
 function Copyright() {
   return (
@@ -26,9 +28,27 @@ function Copyright() {
   );
 }
 
+// const newUser = await UserService.getUserByEmail(email);
+  // const [uName, setUname] = useState("Loading....");
+  // const [cardNumber, setCardNumber] = useState("Loading....")
+  // const [creditBalance, setCreditBalance] = useState("Loading....")
+  // const [creditLimit, setCreditLimit] = useState("Loading....")
+
 const Profile = () => {
   const { user, isAuthenticated, isLoading } = useAuth0();
+  const getUserData = async () => {
+    const resData = await UserService.getUserByEmail(user.email)
+    setUname(resData.data.userName)
 
+    const cardData = await CardService.getCardsByUsername(uName)
+    setCardNumber(cardData.data[0].cardNumber);
+    setCreditBalance(cardData.data[0].creditBalance);
+    setCreditLimit(cardData.data[0].creditLimit);
+    const userRes = await UserService.getUserByEmail(user.email);
+    console.log(userRes.data);
+  }
+  getUserData();
+  
   if (isLoading) {
     return <div>Loading ...</div>;
   }
@@ -98,7 +118,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const cards = [1, 2, 3, 4];
+
 
 export default function Album() {
   const classes = useStyles();
@@ -130,36 +150,15 @@ export default function Album() {
             </div>
           </Container>
         </div>
-        <Container className={classes.cardGrid} maxWidth="md">
-          {/* End hero unit */}
-          <Grid container spacing={4}>
-            {cards.map((card) => (
-              <Grid item xs={6}>
-                <Card sx={{ minWidth: 275 }}>
-                  <CardContent>
-                    <Typography
-                      sx={{ fontSize: 12 }}
-                      color="text.secondary"
-                      gutterBottom
-                    >
-                      Current Balance
-                    </Typography>
-                    <Typography variant="h4" component="div">
-                      $9xxx.xx
-                    </Typography>
-                    <Typography variant="body2">
-                      Account - Number
-                      <br />
-                    </Typography>
-                  </CardContent>
-                  <CardActions>
-                    <Button size="small">View Account</Button>
-                  </CardActions>
-                </Card>
-              </Grid>
-            ))}
-          </Grid>
-        </Container>
+        <Typography
+        component="h1"
+        variant="h2"
+        align="center"
+        color="textPrimary"
+        gutterBottom
+      >
+        <Clock />
+      </Typography>
       </main>
       {/* Footer */}
       <footer className={classes.footer}>

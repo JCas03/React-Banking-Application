@@ -1,6 +1,15 @@
 function Contact() {
     return(
-        <h1> Contact Us</h1>
+        <div>
+            <h1 style={{ color: 'grey' }}> BinaryBank </h1>
+            <h2 style={{ color: 'grey' }}>Email: helpdesk@binarybank.com</h2>
+            <h2 style={{ color: 'grey' }}>Phone: (546) 680 5689</h2>
+            <p> Please send us an email or give us a call for more information.</p>
+            
+            
+        </div>
+        
+        
     )
     }
     
