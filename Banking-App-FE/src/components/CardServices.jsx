@@ -13,9 +13,18 @@ import CardService from "../services/CardService";
 import UserService from "../services/UserService";
 import { useAuth0, User } from "@auth0/auth0-react";
 
+
+
+
 export default function CardServices() {
   const [uName, setUName] = useState("Loading...");
   const [cardData, setCardData] = useState("Loading....");
+
+  function csClearStates(){
+    setUName();
+    setCardData();
+  }
+  
   // let cardData
   // let cardNumber = "Card Number"
   const { user } = useAuth0();
