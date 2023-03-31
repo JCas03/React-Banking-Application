@@ -12,51 +12,37 @@ import axios from "axios";
 import CardService from "../services/CardService";
 import UserService from "../services/UserService";
 import { useAuth0, User } from "@auth0/auth0-react";
-import { LocalizationProvider } from '@mui/x-date-pickers';
-import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
-import { DemoContainer, DemoItem } from '@mui/x-date-pickers/internals/demo';
-import { StaticDateTimePicker } from '@mui/x-date-pickers/StaticDateTimePicker';
-import dayjs from 'dayjs';
-import TextField from '@mui/material/TextField';
+import { LocalizationProvider } from "@mui/x-date-pickers";
+import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
+import { DemoContainer, DemoItem } from "@mui/x-date-pickers/internals/demo";
+import { StaticDateTimePicker } from "@mui/x-date-pickers/StaticDateTimePicker";
+import dayjs from "dayjs";
+import TextField from "@mui/material/TextField";
 import AppointmentPopup from "./AppointmentPopup";
 import AppointmentService from "../services/AppointmentService";
 
-
-
-
 export default function CardServices() {
+  const handleChange = (date) => {
+    this.setState({
+      startDate: date,
+    });
+  };
 
-  const handleChange = (date) => {  
-    this.setState({  
-      startDate: date  
-    });  
-  };  
-  
-  const onFormSubmit = (e) => {  
-    e.preventDefault();  
-    console.log(this.state.startDate)  
-  };  
+  const onFormSubmit = (e) => {
+    e.preventDefault();
+    console.log(this.state.startDate);
+  };
 
   const [buttonPopup, setButtonPopup] = useState(false);
   // let uName = "Username"
-  const [uName, setUname] = useState("Loading....");
-  const [cardNumber, setCardNumber] = useState("Loading....")
-  const [creditBalance, setCreditBalance] = useState("Loading....")
-  const [creditLimit, setCreditLimit] = useState("Loading....")
-  const [selectedDate, setSelectedDate] = useState(null);
-  console.log({selectedDate});
+  const [uName, setUName] = useState("Loading...");
   const [cardData, setCardData] = useState("Loading....");
+  const [selectedDate, setSelectedDate] = useState(null);
+  console.log({ selectedDate });
 
-  function csClearStates(){
-    setUName();
-    setCardData();
-  }
-  
   // let cardData
   // let cardNumber = "Card Number"
   const { user } = useAuth0();
-
-
 
   const loadCards = async () => {
     const resData = await UserService.getUserByEmail(user.email);
@@ -67,7 +53,6 @@ export default function CardServices() {
     setCardData(cardData);
     console.log(uName);
     console.log(cardData.data);
-
 
     // const transactionData = await CardService.viewCardTransactions(cardNumber)
     // let lastTransactionId = transactionData.data.slice(-1)[0].transactionId;
@@ -81,22 +66,33 @@ export default function CardServices() {
 
   return (
     <>
-     <form onSubmit={e => {handleSubmit(e)}}>
+      <form
+        onSubmit={(e) => {
+          handleSubmit(e);
+        }}
+      >
         <LocalizationProvider dateAdapter={AdapterDayjs}>
-          <Button onClick={() => setButtonPopup(true)}>Schedule Appointment</Button>
+          <Button onClick={() => setButtonPopup(true)}>
+            Schedule Appointment
+          </Button>
           <AppointmentPopup trigger={buttonPopup} setTrigger={setButtonPopup}>
             <h3>Appointment Scheduler</h3>
             <p>Please select a date for your appointment</p>
             <DemoContainer
               components={[
-                'DateTimePicker',
-                'MobileDateTimePicker',
-                'DesktopDateTimePicker',
-                'StaticDateTimePicker',
+                "DateTimePicker",
+                "MobileDateTimePicker",
+                "DesktopDateTimePicker",
+                "StaticDateTimePicker",
               ]}
             >
               <DemoItem>
-                <StaticDateTimePicker value={selectedDate} onChange={(newValue) => { setSelectedDate(newValue) }} />
+                <StaticDateTimePicker
+                  value={selectedDate}
+                  onChange={(newValue) => {
+                    setSelectedDate(newValue);
+                  }}
+                />
               </DemoItem>
             </DemoContainer>
             <br></br>
@@ -114,59 +110,36 @@ export default function CardServices() {
         <Grid container spacing={2}>
           <Grid item xs={6}>
             <Card sx={{ minWidth: 275 }}>
-              <CardContent>
-                <Typography
-                  sx={{ fontSize: 14 }}
-                  color="text.secondary"
-                  gutterBottom
-                >
-                  {uName}
-                </Typography>
-                <Typography variant="h5" component="div" gutterBottom>
-                  {cardNumber}
-                </Typography>
-                <Typography sx={{ mb: 1 }} color="text.secondary">
-                  Balance: ${creditBalance}
-                </Typography>
-                <Typography sx={{ mb: 1.5 }} color="text.secondary">
-                  Credit Limit: ${creditLimit}
-                </Typography>
-                <Typography variant="body2">
-                  Most Recent Transaction
-                  <br />
-                  Transaction ID: xxxxxxxxxxxx $123 at Place_Name
-                </Typography>
-              </CardContent>
-              <CardActions>
-                <Button size="small">View All Transactions</Button>
-              </CardActions>
-            </Card>
-          </Grid>
-          <Grid item xs={6}>
-            <Card sx={{ minWidth: 275 }}>
-              <CardContent>
-                <Typography
-                  sx={{ fontSize: 14 }}
-                  color="text.secondary"
-                  gutterBottom
-                >
-                  CreditCard Name
-                </Typography>
-                <Typography variant="h5" component="div">
-                  Card - Number
-                </Typography>
-                <Typography sx={{ mb: 1.5 }} color="text.secondary">
-                  Credit Balance
-                </Typography>
-                <Typography variant="body2">
-                  Most Recent Transaction
-                  <br />
-                  Transaction ID: xxxxxxxxxxxx $321 at Place_Name
-                </Typography>
-              </CardContent>
-              <CardActions>
-                <Button size="small">View All Transactions</Button>
-              </CardActions>
+              {cardData.data?.map((card) => (
+                <>
+                  <CardContent>
+                    <Typography
+                      sx={{ fontSize: 14 }}
+                      color="text.secondary"
+                      gutterBottom
+                    >
+                      {uName}
+                    </Typography>
+                    <Typography variant="h5" component="div" gutterBottom>
+                      {card.cardNumber}
+                    </Typography>
+                    <Typography sx={{ mb: 1 }} color="text.secondary">
+                      Balance: ${card.creditBalance}
+                    </Typography>
+                    <Typography sx={{ mb: 1.5 }} color="text.secondary">
+                      Credit Limit: ${card.creditLimit}
+                    </Typography>
+                    <Typography variant="body2">
+                      Most Recent Transaction
+                      <br />
+                      Transaction ID: xxxxxxxxxxxx $123 at Place_Name
+                    </Typography>
+                  </CardContent>
+                  <CardActions>
+                    <Button size="small">View All Transactions</Button>
+                  </CardActions>
+                </>
+              ))}
             </Card>
           </Grid>
         </Grid>
