@@ -27,15 +27,19 @@ import dayjs from 'dayjs';
 import TextField from '@mui/material/TextField';
 import './css/AccountServices.css'
 
+import AccountService from "../services/AccountService";
+
 
 function createData(store, amount, address, date) {
   return { store, amount, address, date };
 }
+
 export function accClearState() {
   setAccData();
   console.log(accData);
   console.log("The State has been cleared");
 }
+
 
 const rows = [
   createData("Walmart", 200.0, "123 Walmart ave.", "10-21-2023"),
