@@ -1,10 +1,14 @@
-import { useRef } from "react";
-import { accClearState } from "../AccountServices";
-import CardServices from "../CardServices";
+import React from "react";
+import { useAuth0 } from "@auth0/auth0-react";
 
-export default function LogoutService(){
+const LogoutService = () => {
+    const { logout } = useAuth0();
+  
+    return (
+      <button onClick={() => logout({ logoutParams: { returnTo: window.location.origin } })}>
+        Log Out
+      </button>
+    );
+  };
    
-    
-
-
-}
+  export default LogoutService;
