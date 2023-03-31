@@ -42,39 +42,32 @@ export default function CardServices() {
   const [creditLimit, setCreditLimit] = useState("Loading....")
   const [selectedDate, setSelectedDate] = useState(null);
   console.log({selectedDate});
+  const [cardData, setCardData] = useState("Loading....");
   // let cardData
   // let cardNumber = "Card Number"
   const { user } = useAuth0();
 
+
+
   const loadCards = async () => {
+    const resData = await UserService.getUserByEmail(user.email);
+
+    const cardData = await CardService.getCardsByUsername(uName);
+
+    setUName(resData.data.userName);
+    setCardData(cardData);
+    console.log(uName);
+    console.log(cardData.data);
 
 
-    const resData = await UserService.getUserByEmail(user.email)
-    setUname(resData.data.userName)
-
-    const cardData = await CardService.getCardsByUsername(uName)
-    setCardNumber(cardData.data[0].cardNumber);
-    setCreditBalance(cardData.data[0].creditBalance);
-    setCreditLimit(cardData.data[0].creditLimit);
-
-    let appointmentData = await AppointmentService.getAppointmentsByUsername(uName);
-    console.log(appointmentData.data);
-    
     // const transactionData = await CardService.viewCardTransactions(cardNumber)
     // let lastTransactionId = transactionData.data.slice(-1)[0].transactionId;
     // let lastTransactionAmt = transactionData.data.slice(-1)[0].transactionAmt;
-    
 
-    console.log(uName);
-    console.log(cardData.data);
-    console.log(cardNumber);
     // console.log(transactionData.data.slice(-1)[0]);
-    console.log("Card Number: " + cardNumber);
-    console.log("Credit Balance: " + creditBalance);
-    console.log("Credit Limit: " + creditLimit);
     // console.log("Last Transaction ID: " + lastTransactionId);
     // console.log("Last Transaction Amount: " + lastTransactionAmt);
-  }
+  };
   loadCards();
 
   return (
