@@ -5,6 +5,7 @@ import com.code.service.UserService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -52,5 +53,21 @@ public class UserController {
     public ResponseEntity<User> updateUser(@PathVariable("id") String id, @RequestBody User user) {
         return userService.updateUser(id, user);
     }
+
+    @ApiOperation(value = "Check User Email", tags = "checkUserEmail")
+    @GetMapping("/check-user-email/{email}")
+    public User getUserByEmail(@PathVariable("email")String email) {
+        return userService.getUserByEmail(email);
+    }
+
+
+
+    /*public ResponseEntity<User> getUserByEmail(@PathVariable String email) {
+        Optional<User> user = Optional.ofNullable(userService.getUserByEmail(email));
+        if(!user.isPresent()) {
+            return ResponseEntity.notFound().build();
+        }
+        return (userService.getUserByEmail(email));
+    }*/
 
 }
