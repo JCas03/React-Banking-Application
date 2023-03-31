@@ -17,6 +17,16 @@ import Paper from "@mui/material/Paper";
 import "./css/AccountServices.css";
 import AccountService from "../services/AccountService";
 import { useState, react } from "react";
+import AppointmentPopup from "./AppointmentPopup";
+import Button from '@mui/material/Button';
+import { LocalizationProvider } from '@mui/x-date-pickers';
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
+import { DemoContainer, DemoItem } from '@mui/x-date-pickers/internals/demo';
+import { StaticDateTimePicker } from '@mui/x-date-pickers/StaticDateTimePicker';
+import dayjs from 'dayjs';
+import TextField from '@mui/material/TextField';
+import './css/AccountServices.css'
+
 
 function createData(store, amount, address, date) {
   return { store, amount, address, date };
@@ -31,6 +41,8 @@ const rows = [
 ];
 export default function AccountServices() {
   const [accData, setAccData] = useState("Loading...");
+  const [buttonPopup, setButtonPopup] = useState(false);
+  const [date, setDate] = useState(null);
 
 
   const loadAccounts = async () => {
@@ -38,6 +50,8 @@ export default function AccountServices() {
     let accsData = await AccountService.getAllAccountsByAccountNumber(accNum);
     setAccData(accsData);
     console.log(accData);
+
+    
   
   
     const transactionData = await AccountService.viewAllTransactionsOnAccount(
@@ -57,8 +71,37 @@ export default function AccountServices() {
   };
   loadAccounts();
 
+
   return (
+  
     <div>
+      <LocalizationProvider dateAdapter={AdapterDayjs}>
+        <Button onClick={() => setButtonPopup(true)}>Schedule Appointment</Button>
+        <AppointmentPopup trigger={buttonPopup} setTrigger={setButtonPopup}>
+          <h3>Appointment Scheduler</h3>
+          <p>Please select a date for your appointment</p>
+          <DemoContainer
+        components={[
+          'DateTimePicker',
+          'MobileDateTimePicker',
+          'DesktopDateTimePicker',
+          'StaticDateTimePicker',
+        ]}
+      >
+        <DemoItem>
+          <StaticDateTimePicker defaultValue={dayjs('2022-04-17T15:30')} />
+        </DemoItem>
+      </DemoContainer>
+          <br></br>
+          <TextField
+          id="outlined-textarea"
+          label="Reason for Appointment"
+          placeholder="Enter details"
+          multiline
+          margin="normal"
+        />
+        </AppointmentPopup>
+      </LocalizationProvider>
       <Box>
         {/* <Grid container spacing={2}>
           <Grid item xs={6}> */}

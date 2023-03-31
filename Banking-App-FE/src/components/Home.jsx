@@ -13,6 +13,15 @@ import { Link } from "react-router-dom";
 import { grey } from "@mui/material/colors";
 import { useAuth0 } from "@auth0/auth0-react";
 import UserService from "../services/UserService";
+import ReactModal from 'react-modal';
+import { useState } from "react";
+import AppointmentPopup from "./AppointmentPopup";
+import { LocalizationProvider } from '@mui/x-date-pickers';
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
+import { DemoContainer, DemoItem } from '@mui/x-date-pickers/internals/demo';
+import { StaticDateTimePicker } from '@mui/x-date-pickers/StaticDateTimePicker';
+import dayjs from 'dayjs';
+import TextField from '@mui/material/TextField';
 
 function Copyright() {
   return (
@@ -31,6 +40,7 @@ function Copyright() {
 
 
 const Profile = () => {
+  const [buttonPopup, setButtonPopup] = useState(false);
   const { user, isAuthenticated, isLoading } = useAuth0();
   const getUserData = async () => {
     const userRes = await UserService.getUserByEmail(user.email);
@@ -43,15 +53,17 @@ const Profile = () => {
   }
   if (isAuthenticated) {
     return (
-      <Typography
-        component="h1"
-        variant="h2"
-        align="center"
-        color="textPrimary"
-        gutterBottom
-      >
-        Welcome, {user.name}
-      </Typography>
+      <>
+        <Typography
+          component="h1"
+          variant="h2"
+          align="center"
+          color="textPrimary"
+          gutterBottom
+        >
+          Welcome, {user.name}
+        </Typography>
+      </>
     );
   } else {
     return (
