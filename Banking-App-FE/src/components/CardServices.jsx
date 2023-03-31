@@ -21,6 +21,9 @@ import TextField from '@mui/material/TextField';
 import AppointmentPopup from "./AppointmentPopup";
 import AppointmentService from "../services/AppointmentService";
 
+
+
+
 export default function CardServices() {
 
   const handleChange = (date) => {  
@@ -43,6 +46,12 @@ export default function CardServices() {
   const [selectedDate, setSelectedDate] = useState(null);
   console.log({selectedDate});
   const [cardData, setCardData] = useState("Loading....");
+
+  function csClearStates(){
+    setUName();
+    setCardData();
+  }
+  
   // let cardData
   // let cardNumber = "Card Number"
   const { user } = useAuth0();
