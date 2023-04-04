@@ -7,11 +7,16 @@ import Card from './components/CardServices'
 import AccountService from './components/AccountServices'
 import Contact from './components/ContactPage'
 import Transactions from './components/Transactions'
+import AppointmentDisplay from './components/AppointmentDisplay'
+import { LocalizationProvider } from '@mui/x-date-pickers'
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs'
+
 
 
 function App() {
   return (
     <BrowserRouter>
+      <LocalizationProvider dateAdapter={AdapterDayjs}>
       <ResponsiveAppBar />
       <Routes>
         <Route path="/" element = {<Home/>} />
@@ -19,7 +24,9 @@ function App() {
         <Route path="/account-services" element = {<AccountService/>} />
         <Route path="/contact" element = {<Contact/>} />
         <Route path="/all-transactions" element = {<Transactions/>}/>
+        <Route path="/schedule-appointment" element={<AppointmentDisplay/>}/>
       </Routes>
+      </LocalizationProvider>
     </BrowserRouter>
   )
 }
