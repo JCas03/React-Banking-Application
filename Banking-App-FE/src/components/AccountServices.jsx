@@ -26,6 +26,8 @@ import { StaticDateTimePicker } from '@mui/x-date-pickers/StaticDateTimePicker';
 import dayjs from 'dayjs';
 import TextField from '@mui/material/TextField';
 import './css/AccountServices.css'
+import { useAuth0 } from "@auth0/auth0-react";
+import UserService from "../services/UserService";
 
 function createData(store, amount, address, date) {
   return { store, amount, address, date };
@@ -43,14 +45,27 @@ const rows = [
 ];
 export default function AccountServices() {
   const [accData, setAccData] = useState("Loading...");
-  
+  const { user, isAuthenticated, isLoading } = useAuth0();
+  const [uName, setUName] = useState("Loading...");
 
   const loadAccounts = async () => {
-    let accNum = 13;
+
+    const resData = await UserService.getUserByEmail(user.email)
+    setUName(resData.data.userName)
+
+    let pullAccNum = await AccountService.getAllAccountsByUsername(uName);
+    console.log(pullAccNum.data);
+    console.log(pullAccNum.data[0].accountNumber);
+    let accNum = pullAccNum.data[0].accountNumber;
+    
+    
     let accsData = await AccountService.getAllAccountsByAccountNumber(accNum);
     setAccData(accsData);
     console.log(accData);
 
+    console.log(uName);
+
+  
     
   
   
