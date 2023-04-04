@@ -25,6 +25,9 @@ import { DemoContainer, DemoItem } from '@mui/x-date-pickers/internals/demo';
 import { StaticDateTimePicker } from '@mui/x-date-pickers/StaticDateTimePicker';
 import dayjs from 'dayjs';
 import TextField from '@mui/material/TextField';
+import { useAuth0, User } from "@auth0/auth0-react";
+import CardService from "../services/CardService";
+import UserService from "../services/UserService";
 import './css/AccountServices.css'
 
 
@@ -46,12 +49,22 @@ export default function AccountServices() {
   const [accData, setAccData] = useState("Loading...");
   const [buttonPopup, setButtonPopup] = useState(false);
   const [date, setDate] = useState(null);
+  const [uName, setUname] = useState("Loading....");
+  const { user } = useAuth0();
 
   const loadAccounts = async () => {
-    let accNum = 13;
-    let accsData = await AccountService.getAllAccountsByAccountNumber(accNum);
-    setAccData(accsData);
-    console.log(accData);
+    // let accNum = 13;
+    // let accsData = await AccountService.getAllAccountsByAccountNumber(accNum);
+    
+    // setAccData(accsData);
+    // console.log(accData);
+
+    const userRes = await UserService.getUserByEmail(user.email);
+    setUname(userRes.data.userName);
+    let accsUsernameData = await AccountService.getAllAccountsByUsername(uName);
+    console.log(accsUsernameData.data);
+
+    
 
     
   

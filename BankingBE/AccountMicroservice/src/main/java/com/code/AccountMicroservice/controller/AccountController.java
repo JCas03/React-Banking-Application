@@ -42,4 +42,10 @@ public class AccountController {
     public List<Account> getAllAccountsByAccountNumber(@PathVariable("accountNumber") String accountNumber) {
         return accountService.findAllAccountsByAccountNumber(accountNumber);
     }
+
+    @GetMapping("/all-accounts-by-username/{username}")
+    @ApiOperation(value = "Get Accounts By Username", response = Iterable.class, tags = "GetAccountsByUsername")
+    public List<Account> getAllAccountsByUsername(@PathVariable("username") String username) {
+        return accountService.findAllAccountsByUsername(username);
+    }
 }
