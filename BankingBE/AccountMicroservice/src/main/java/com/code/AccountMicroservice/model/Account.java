@@ -21,6 +21,8 @@ public class Account {
     private String accountType;
     @ApiModelProperty(notes = "Account Name",name="AccountName",required=true,value="Test Account Name")
     private String accountName;
+    @ApiModelProperty(notes = "Username",name="UserName",required=true,value="Test Username")
+    private String username;
     @ApiModelProperty(notes = "Balance Date",name="BalanceDate",required=true,value="99-99-9999")
     private LocalDateTime balanceDate = LocalDateTime.now();
     @ApiModelProperty(notes = "Available Balance",name="AvailableBalance",required=true,value="9999.99")
