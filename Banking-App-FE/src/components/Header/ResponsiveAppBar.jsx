@@ -13,12 +13,12 @@ import AccountBalanceIcon from '@mui/icons-material/AccountBalance';;
 import DrawerComp from "./Drawer";
 import { useAuth0 } from "@auth0/auth0-react";
 
-const LoginButton = async () => {
+const LoginButton = () => {
   const { loginWithRedirect } = useAuth0();
 
   return <Button onClick={() => loginWithRedirect()} sx={{ marginLeft: "auto" }} variant="contained">Log In</Button>;
 };
-const LogoutButton = async () => {
+const LogoutButton = () => {
   const { logout } = useAuth0();
 
   return (
