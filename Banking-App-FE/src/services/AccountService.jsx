@@ -14,10 +14,6 @@ class AccountService {
         return axios.get(`http://localhost:8080/accms/account/${accountNumber}`);
     }
 
-    getAllAccountsByAccountNumber(accountNumber) {
-        return axios.get(`http://localhost:8080/accms/all-accounts/${accountNumber}`);
-    }
-
     deposit(accountNumber, transaction) {
         return axios.post(`http://localhost:8080/accms/deposit/${accountNumber}`, transaction);
     }
@@ -32,6 +28,10 @@ class AccountService {
 
     viewAllTransactionsOnAccount(accountNumber) {
         return axios.get(`http://localhost:8080/accms/view-transactions/${accountNumber}`);
+    }
+
+    getAllAccountsByUsername(username) {
+        return axios.get(`http://localhost:8080/accms/all-accounts-by-username/${username}`);
     }
 }
 export default new AccountService();

@@ -1,11 +1,4 @@
-import {
-  Card,
-  CardContent,
-  Grid,
-  Link,
-  SvgIcon,
-  Typography,
-} from "@mui/material";
+import { Card, CardContent, Grid, Link, SvgIcon, Typography } from "@mui/material";
 import { Box, Container } from "@mui/system";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
@@ -14,6 +7,7 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
+
 import "./css/AccountServices.css";
 import AccountService from "../services/AccountService";
 import { useState, react } from "react";
@@ -25,17 +19,19 @@ import { DemoContainer, DemoItem } from '@mui/x-date-pickers/internals/demo';
 import { StaticDateTimePicker } from '@mui/x-date-pickers/StaticDateTimePicker';
 import dayjs from 'dayjs';
 import TextField from '@mui/material/TextField';
-import './css/AccountServices.css'
+import { useAuth0, User } from "@auth0/auth0-react";
+import CardService from "../services/CardService";
+import UserService from "../services/UserService";
 
+import './css/AccountServices.css'
+import AccountService from "../services/AccountService";
 
 function createData(store, amount, address, date) {
   return { store, amount, address, date };
 }
-export function accClearState() {
-  setAccData();
-  console.log(accData);
-  console.log("The State has been cleared");
-}
+
+
+
 
 const rows = [
   createData("Walmart", 200.0, "123 Walmart ave.", "10-21-2023"),
@@ -46,12 +42,22 @@ export default function AccountServices() {
   const [accData, setAccData] = useState("Loading...");
   const [buttonPopup, setButtonPopup] = useState(false);
   const [date, setDate] = useState(null);
+  const [uName, setUname] = useState("Loading....");
+  const { user } = useAuth0();
 
   const loadAccounts = async () => {
-    let accNum = 13;
-    let accsData = await AccountService.getAllAccountsByAccountNumber(accNum);
-    setAccData(accsData);
-    console.log(accData);
+    // let accNum = 13;
+    // let accsData = await AccountService.getAllAccountsByAccountNumber(accNum);
+    
+    // setAccData(accsData);
+    // console.log(accData);
+
+    const userRes = await UserService.getUserByEmail(user.email);
+    setUname(userRes.data.userName);
+    let accsUsernameData = await AccountService.getAllAccountsByUsername(uName);
+    console.log(accsUsernameData.data);
+
+    
 
     
   
@@ -72,59 +78,19 @@ export default function AccountServices() {
   loadAccounts();
 
 
+
   return (
-  
     <div>
-      <LocalizationProvider dateAdapter={AdapterDayjs}>
-        <Button onClick={() => setButtonPopup(true)}>Schedule Appointment</Button>
-        <AppointmentPopup trigger={buttonPopup} setTrigger={setButtonPopup}>
-          <h3>Appointment Scheduler</h3>
-          <p>Please select a date for your appointment</p>
-          <DemoContainer
-        components={[
-          'DateTimePicker',
-          'MobileDateTimePicker',
-          'DesktopDateTimePicker',
-          'StaticDateTimePicker',
-        ]}
-      >
-        <DemoItem>
-          <StaticDateTimePicker defaultValue={dayjs('2022-04-17T15:30')} />
-        </DemoItem>
-      </DemoContainer>
-          <br></br>
-          <TextField
-          id="outlined-textarea"
-          label="Reason for Appointment"
-          placeholder="Enter details"
-          multiline
-          margin="normal"
-        />
-        </AppointmentPopup>
-      </LocalizationProvider>
-      <Box>
-        {/* <Grid container spacing={2}>
-          <Grid item xs={6}> */}
-        <Card className="accountCard">
-          {accData.data?.map((user) => (
+    <Box >
+      <Grid container spacing={2}>
+        <Grid item xs={6}>
+          <Card className="accountCard">
             <CardContent>
-              <Typography
-                className="maintext"
-                align="left"
-                variant="h2"
-                component="div"
-                alt="Loading..."
-              >
-                {user.accountName}
+              <Typography className="maintext"  align="left" variant="h2" component="div">
+                Checkings Account
               </Typography>
-              <Typography
-                className="maintext"
-                gutterBottom
-                align="left"
-                variant="h3"
-                alt="Loading..."
-              >
-                ${user.availableBalance}
+              <Typography className="maintext" gutterBottom align="left" variant="h3">
+                $9999.99
               </Typography>
               <TableContainer component={Paper}>
                 <Table>
@@ -151,14 +117,11 @@ export default function AccountServices() {
                 </Table>
               </TableContainer>
             </CardContent>
-          ))}
-          <Link className="tlink" underline="hover" href="/all-transactions">
-            See all Transactions
-          </Link>
-        </Card>
-        {/* </Grid>
-        </Grid> */}
-      </Box>
+              <Link className="tlink" underline="hover" href="/all-transactions">See all Transactions</Link>
+          </Card>
+        </Grid>
+      </Grid>
+    </Box>
     </div>
   );
 }
