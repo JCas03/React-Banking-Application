@@ -38,7 +38,8 @@ export default function CardServices() {
   const [uName, setUName] = useState("Loading...");
   const [cardData, setCardData] = useState("Loading....");
   const [selectedDate, setSelectedDate] = useState(null);
-  console.log({ selectedDate });
+  const [appDetails, setAppDetails] = useState(null);
+
 
   // let cardData
   // let cardNumber = "Card Number"
@@ -51,8 +52,8 @@ export default function CardServices() {
 
     setUName(resData.data.userName);
     setCardData(cardData);
-    console.log(uName);
-    console.log(cardData.data);
+    // console.log(uName);
+    // console.log(cardData.data);
 
     // const transactionData = await CardService.viewCardTransactions(cardNumber)
     // let lastTransactionId = transactionData.data.slice(-1)[0].transactionId;
@@ -64,48 +65,12 @@ export default function CardServices() {
   };
   loadCards();
 
+
   return (
     <>
-      <form
-        onSubmit={(e) => {
-          handleSubmit(e);
-        }}
-      >
-        <LocalizationProvider dateAdapter={AdapterDayjs}>
-          <Button onClick={() => setButtonPopup(true)}>
+    <Button href="/schedule-appointment">
             Schedule Appointment
           </Button>
-          <AppointmentPopup trigger={buttonPopup} setTrigger={setButtonPopup}>
-            <h3>Appointment Scheduler</h3>
-            <p>Please select a date for your appointment</p>
-            <DemoContainer
-              components={[
-                "DateTimePicker",
-                "MobileDateTimePicker",
-                "DesktopDateTimePicker",
-                "StaticDateTimePicker",
-              ]}
-            >
-              <DemoItem>
-                <StaticDateTimePicker
-                  value={selectedDate}
-                  onChange={(newValue) => {
-                    setSelectedDate(newValue);
-                  }}
-                />
-              </DemoItem>
-            </DemoContainer>
-            <br></br>
-            <TextField
-              id="outlined-textarea"
-              label="Reason for Appointment"
-              placeholder="Enter details"
-              multiline
-              margin="normal"
-            />
-          </AppointmentPopup>
-        </LocalizationProvider>
-      </form>
       <Box>
         <Grid container spacing={2}>
           <Grid item xs={6}>
