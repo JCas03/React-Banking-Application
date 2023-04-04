@@ -24,7 +24,6 @@ import CardService from "../services/CardService";
 import UserService from "../services/UserService";
 
 import './css/AccountServices.css'
-import AccountService from "../services/AccountService";
 
 function createData(store, amount, address, date) {
   return { store, amount, address, date };
@@ -46,10 +45,10 @@ export default function AccountServices() {
   const { user } = useAuth0();
 
   const loadAccounts = async () => {
-    // let accNum = 13;
-    // let accsData = await AccountService.getAllAccountsByAccountNumber(accNum);
+    let accNum = 15;
+    let accsData = await AccountService.getAllAccountsByAccountNumber(accNum);
     
-    // setAccData(accsData);
+    setAccData(accsData);
     // console.log(accData);
 
     const userRes = await UserService.getUserByEmail(user.email);
