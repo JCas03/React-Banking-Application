@@ -17,14 +17,6 @@ import Paper from "@mui/material/Paper";
 import "./css/AccountServices.css";
 import AccountService from "../services/AccountService";
 import { useState, react } from "react";
-import AppointmentPopup from "./AppointmentPopup";
-import Button from '@mui/material/Button';
-import { LocalizationProvider } from '@mui/x-date-pickers';
-import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
-import { DemoContainer, DemoItem } from '@mui/x-date-pickers/internals/demo';
-import { StaticDateTimePicker } from '@mui/x-date-pickers/StaticDateTimePicker';
-import dayjs from 'dayjs';
-import TextField from '@mui/material/TextField';
 import './css/AccountServices.css'
 import { useAuth0 } from "@auth0/auth0-react";
 import UserService from "../services/UserService";
