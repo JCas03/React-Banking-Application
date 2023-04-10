@@ -7,7 +7,6 @@ import {
   CardActions,
 } from "@mui/material";
 import { Box, Container } from "@mui/system";
-import Button from "@mui/material/Button";
 import axios from "axios";
 import CardService from "../services/CardService";
 import UserService from "../services/UserService";
@@ -58,9 +57,6 @@ export default function CardServices() {
 
   return (
     <>
-    <Button href="/schedule-appointment">
-            Schedule Appointment
-          </Button>
       <Box>
         <Grid container spacing={2}>
           <Grid item xs={6}>
