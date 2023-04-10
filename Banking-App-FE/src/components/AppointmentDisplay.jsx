@@ -7,19 +7,34 @@ import {
 } from "@mui/x-date-pickers";
 import { DemoItem } from "@mui/x-date-pickers/internals/demo";
 import React, { useState } from "react";
+import UserService from "../services/UserService";
+import AppointmentService from "../services/AppointmentService";
 
 export default function AppointmentDisplay() {
   const [details, setDetails] = useState("");
   const [dateTime, setDateTime] = useState("");
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
   const { user, isAuthenticated, isLoading } = useAuth0();
+
+  const loadUser = async () =>{
+    const userData = await UserService.getUserByEmail(user.email);
+    setFirstName(userData.data.firstName);
+    setLastName(userData.data.lastName);
+  }
+  loadUser();
+  
 
   const handleSubmit = (event) => {
     event.preventDefault();
     console.log(details);
     console.log(user.name);
-    console.log(dateTime);
-    // const dt = dateTime.map((dateT) => dateT.$d)
-    // console.log(dt);
+    console.log(firstName);
+    console.log(lastName);
+    console.log(dateTime.$d);
+    let appointment = {username: user.name, firstName: firstName, lastName: lastName, 
+      details: details, appointmentDate: dateTime};
+    AppointmentService.createNewAppointment(appointment);
   };
 
   return (
@@ -34,7 +49,7 @@ export default function AppointmentDisplay() {
         </DemoItem>
         <TextField
           label="Reason For appointment"
-          onChange={(e) => setDetails(e)}
+          onChange={(e) => setDetails(e.target.value)}
           required
           variant="outlined"
           color="primary"

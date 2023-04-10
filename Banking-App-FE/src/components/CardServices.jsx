@@ -18,27 +18,17 @@ import { DemoContainer, DemoItem } from "@mui/x-date-pickers/internals/demo";
 import { StaticDateTimePicker } from "@mui/x-date-pickers/StaticDateTimePicker";
 import dayjs from "dayjs";
 import TextField from "@mui/material/TextField";
-import AppointmentPopup from "./AppointmentPopup";
+
 import AppointmentService from "../services/AppointmentService";
 
 export default function CardServices() {
-  const handleChange = (date) => {
-    this.setState({
-      startDate: date,
-    });
-  };
 
-  const onFormSubmit = (e) => {
-    e.preventDefault();
-    console.log(this.state.startDate);
-  };
 
-  const [buttonPopup, setButtonPopup] = useState(false);
+
   // let uName = "Username"
   const [uName, setUName] = useState("Loading...");
   const [cardData, setCardData] = useState("Loading....");
-  const [selectedDate, setSelectedDate] = useState(null);
-  const [appDetails, setAppDetails] = useState(null);
+;
 
 
   // let cardData

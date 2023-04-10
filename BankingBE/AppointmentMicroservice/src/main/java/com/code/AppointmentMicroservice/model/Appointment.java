@@ -23,6 +23,6 @@ public class Appointment {
     @ApiModelProperty(notes = "Details",name="Details",required=true,value="Test Details")
     private String details;
     @ApiModelProperty(notes = "Appointment Date",name="AppointmentDate",required=true,value="99-99-9999")
-    private LocalDate appointmentDate;
+    private String appointmentDate;
 
 }
