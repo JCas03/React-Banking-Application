@@ -1,4 +1,11 @@
-import { Card, CardContent, Grid, Link, SvgIcon, Typography } from "@mui/material";
+import {
+  Card,
+  CardContent,
+  Grid,
+  Link,
+  SvgIcon,
+  Typography,
+} from "@mui/material";
 import { Box, Container } from "@mui/system";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
@@ -11,27 +18,23 @@ import Paper from "@mui/material/Paper";
 import "./css/AccountServices.css";
 import AccountService from "../services/AccountService";
 import { useState, react } from "react";
-import AppointmentPopup from "./AppointmentPopup";
-import Button from '@mui/material/Button';
-import { LocalizationProvider } from '@mui/x-date-pickers';
-import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
-import { DemoContainer, DemoItem } from '@mui/x-date-pickers/internals/demo';
-import { StaticDateTimePicker } from '@mui/x-date-pickers/StaticDateTimePicker';
-import dayjs from 'dayjs';
-import TextField from '@mui/material/TextField';
+
+import Button from "@mui/material/Button";
+import { LocalizationProvider } from "@mui/x-date-pickers";
+import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
+import { DemoContainer, DemoItem } from "@mui/x-date-pickers/internals/demo";
+import { StaticDateTimePicker } from "@mui/x-date-pickers/StaticDateTimePicker";
+import dayjs from "dayjs";
+import TextField from "@mui/material/TextField";
 import { useAuth0, User } from "@auth0/auth0-react";
 import CardService from "../services/CardService";
 import UserService from "../services/UserService";
 
-import './css/AccountServices.css'
-import AccountService from "../services/AccountService";
+import "./css/AccountServices.css";
 
 function createData(store, amount, address, date) {
   return { store, amount, address, date };
 }
-
-
-
 
 const rows = [
   createData("Walmart", 200.0, "123 Walmart ave.", "10-21-2023"),
@@ -48,7 +51,7 @@ export default function AccountServices() {
   const loadAccounts = async () => {
     // let accNum = 13;
     // let accsData = await AccountService.getAllAccountsByAccountNumber(accNum);
-    
+
     // setAccData(accsData);
     // console.log(accData);
 
@@ -57,11 +60,6 @@ export default function AccountServices() {
     let accsUsernameData = await AccountService.getAllAccountsByUsername(uName);
     console.log(accsUsernameData.data);
 
-    
-
-    
-  
-  
     const transactionData = await AccountService.viewAllTransactionsOnAccount(
       accNum
     );
@@ -77,51 +75,65 @@ export default function AccountServices() {
   };
   loadAccounts();
 
-
-
   return (
     <div>
-    <Box >
-      <Grid container spacing={2}>
-        <Grid item xs={6}>
-          <Card className="accountCard">
-            <CardContent>
-              <Typography className="maintext"  align="left" variant="h2" component="div">
-                Checkings Account
-              </Typography>
-              <Typography className="maintext" gutterBottom align="left" variant="h3">
-                $9999.99
-              </Typography>
-              <TableContainer component={Paper}>
-                <Table>
-                  <TableHead>
-                    <TableRow>
-                      <TableCell>Recent Transactions</TableCell>
-                      <TableCell align="right">Amount</TableCell>
-                      <TableCell align="right">Location</TableCell>
-                      <TableCell align="right">Date</TableCell>
-                    </TableRow>
-                  </TableHead>
-                  <TableBody>
-                    {rows.map((row) => (
-                      <TableRow key={row.store}>
-                        <TableCell component="th" scope="row">
-                          {row.store}
-                        </TableCell>
-                        <TableCell align="right">{row.amount}</TableCell>
-                        <TableCell align="right">{row.address}</TableCell>
-                        <TableCell align="right">{row.date}</TableCell>
+      <Box>
+        <Grid container spacing={2}>
+          <Grid item xs={6}>
+            <Card className="accountCard">
+              <CardContent>
+                <Typography
+                  className="maintext"
+                  align="left"
+                  variant="h2"
+                  component="div"
+                >
+                  Checkings Account
+                </Typography>
+                <Typography
+                  className="maintext"
+                  gutterBottom
+                  align="left"
+                  variant="h3"
+                >
+                  $9999.99
+                </Typography>
+                <TableContainer component={Paper}>
+                  <Table>
+                    <TableHead>
+                      <TableRow>
+                        <TableCell>Recent Transactions</TableCell>
+                        <TableCell align="right">Amount</TableCell>
+                        <TableCell align="right">Location</TableCell>
+                        <TableCell align="right">Date</TableCell>
                       </TableRow>
-                    ))}
-                  </TableBody>
-                </Table>
-              </TableContainer>
-            </CardContent>
-              <Link className="tlink" underline="hover" href="/all-transactions">See all Transactions</Link>
-          </Card>
+                    </TableHead>
+                    <TableBody>
+                      {rows.map((row) => (
+                        <TableRow key={row.store}>
+                          <TableCell component="th" scope="row">
+                            {row.store}
+                          </TableCell>
+                          <TableCell align="right">{row.amount}</TableCell>
+                          <TableCell align="right">{row.address}</TableCell>
+                          <TableCell align="right">{row.date}</TableCell>
+                        </TableRow>
+                      ))}
+                    </TableBody>
+                  </Table>
+                </TableContainer>
+              </CardContent>
+              <Link
+                className="tlink"
+                underline="hover"
+                href="/all-transactions"
+              >
+                See all Transactions
+              </Link>
+            </Card>
+          </Grid>
         </Grid>
-      </Grid>
-    </Box>
+      </Box>
     </div>
   );
 }
