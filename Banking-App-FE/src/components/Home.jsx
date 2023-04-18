@@ -121,60 +121,104 @@ const useStyles = makeStyles((theme) => ({
 
 
 export default function Album() {
+  const {user} = useAuth0();
   const classes = useStyles();
 
-  return (
-    <React.Fragment>
-      <main>
-        {/* Hero unit */}
-        <div className={classes.heroContent}>
-          <Container maxWidth="sm">
-            <Profile />
-            <div className={classes.heroButtons}>
-              <Grid container spacing={2} justifyContent="center">
-                <Grid item>
-                  <Link to="/account-services">
-                    <Button variant="contained" color="primary">
-                      Account Dashboard
-                    </Button>
-                  </Link>
-                </Grid>
-                <Grid item>
-                  <Link to="/card-services">
-                    <Button variant="outlined" color="primary">
-                      Credit Card Dashboard
-                    </Button>
-                  </Link>
-                </Grid>
-              </Grid>
-            </div>
-          </Container>
-        </div>
-        <Typography
-        component="h1"
-        variant="h2"
-        align="center"
-        color="textPrimary"
-        gutterBottom
-      >
-        <Clock />
-      </Typography>
-      </main>
-      {/* Footer */}
-      <footer className={classes.footer}>
-        <Typography variant="h6" align="center" gutterBottom></Typography>
 
-        <Typography
-          variant="subtitle1"
+  if (typeof(user) == "undefined"){
+    return (
+      <React.Fragment>
+        <main>
+          {/* Hero unit */}
+          <div className={classes.heroContent}>
+            <Container maxWidth="sm">
+              <Profile />
+            </Container>
+          </div>
+          <Typography
+          component="h1"
+          variant="h2"
           align="center"
-          color="textSecondary"
-          component="p"
+          color="textPrimary"
+          gutterBottom
         >
-          Thank you for choosing Binary Bank!
+          <Clock />
         </Typography>
-        <Copyright />
-      </footer>
-      {/* End footer */}
-    </React.Fragment>
-  );
+        </main>
+        {/* Footer */}
+        <footer className={classes.footer}>
+          <Typography variant="h6" align="center" gutterBottom></Typography>
+  
+          <Typography
+            variant="subtitle1"
+            align="center"
+            color="textSecondary"
+            component="p"
+          >
+            Thank you for choosing Binary Bank!
+          </Typography>
+          <Copyright />
+        </footer>
+        {/* End footer */}
+      </React.Fragment>
+    );
+
+  
+  }
+  else{
+    return (
+      <React.Fragment>
+        <main>
+          {/* Hero unit */}
+          <div className={classes.heroContent}>
+            <Container maxWidth="sm">
+              <Profile />
+              <div className={classes.heroButtons}>
+                <Grid container spacing={2} justifyContent="center">
+                  <Grid item>
+                    <Link to="/account-services">
+                      <Button variant="contained" color="primary">
+                        Account Dashboard
+                      </Button>
+                    </Link>
+                  </Grid>
+                  <Grid item>
+                    <Link to="/card-services">
+                      <Button variant="outlined" color="primary">
+                        Credit Card Dashboard
+                      </Button>
+                    </Link>
+                  </Grid>
+                </Grid>
+              </div>
+            </Container>
+          </div>
+          <Typography
+          component="h1"
+          variant="h2"
+          align="center"
+          color="textPrimary"
+          gutterBottom
+        >
+          <Clock />
+        </Typography>
+        </main>
+        {/* Footer */}
+        <footer className={classes.footer}>
+          <Typography variant="h6" align="center" gutterBottom></Typography>
+  
+          <Typography
+            variant="subtitle1"
+            align="center"
+            color="textSecondary"
+            component="p"
+          >
+            Thank you for choosing Binary Bank!
+          </Typography>
+          <Copyright />
+        </footer>
+        {/* End footer */}
+      </React.Fragment>
+    );
+  }
 }

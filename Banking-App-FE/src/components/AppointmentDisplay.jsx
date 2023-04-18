@@ -34,7 +34,8 @@ export default function AppointmentDisplay() {
     console.log(dateTime.$d);
     let appointment = {username: user.name, firstName: firstName, lastName: lastName, 
       details: details, appointmentDate: dateTime};
-    AppointmentService.createNewAppointment(appointment);
+    console.log(JSON.stringify(appointment));
+    AppointmentService.createNewAppointment(JSON.stringify(appointment));
   };
 
   return (
