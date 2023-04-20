@@ -12,7 +12,7 @@ function Clock() {
 
   return (
     <div>
-      <h2 style={{ color: 'black' }}>{time.toLocaleTimeString()}</h2>
+      <h2 style={{ color: '#cfd8dc' }}>{time.toLocaleTimeString()}</h2>
     </div>
   );
 }
