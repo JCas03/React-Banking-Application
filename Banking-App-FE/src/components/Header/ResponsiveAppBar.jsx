@@ -60,6 +60,7 @@ const Header = () => {
                 <Tab label="Home" href= "/" />
                 <Tab label="Account Services" href="/account-services" />
                 <Tab label="Card Services" href="/card-services"/>
+                <Tab label="Transfer Funds" href="/transfer-funds"/>
                 <Tab label="Contact" href="/contact" />
               </Tabs>
               <LoginButton/>

@@ -7,6 +7,7 @@ import Card from './components/CardServices'
 import AccountService from './components/AccountServices'
 import Contact from './components/ContactPage'
 import Transactions from './components/Transactions'
+import TransferFunds from './components/TransferFunds'
 import AppointmentDisplay from './components/AppointmentDisplay'
 import { LocalizationProvider } from '@mui/x-date-pickers'
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs'
@@ -25,6 +26,7 @@ function App() {
         <Route path="/contact" element = {<Contact/>} />
         <Route path="/all-transactions" element = {<Transactions/>}/>
         <Route path="/schedule-appointment" element={<AppointmentDisplay/>}/>
+        <Route path="/transfer-funds" element = {<TransferFunds/>} />
       </Routes>
       </LocalizationProvider>
     </BrowserRouter>
