@@ -12,58 +12,33 @@ import axios from "axios";
 import CardService from "../services/CardService";
 import UserService from "../services/UserService";
 import { useAuth0, User } from "@auth0/auth0-react";
-import { LocalizationProvider } from "@mui/x-date-pickers";
-import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
-import { DemoContainer, DemoItem } from "@mui/x-date-pickers/internals/demo";
-import { StaticDateTimePicker } from "@mui/x-date-pickers/StaticDateTimePicker";
-import dayjs from "dayjs";
-import TextField from "@mui/material/TextField";
-
-import AppointmentService from "../services/AppointmentService";
 
 export default function CardServices() {
-
-
-
-  // let uName = "Username"
   const [uName, setUName] = useState("Loading...");
   const [cardData, setCardData] = useState("Loading....");
-;
-
-
-  // let cardData
-  // let cardNumber = "Card Number"
   const { user } = useAuth0();
 
-  const loadCards = async () => {
-    const resData = await UserService.getUserByEmail(user.email);
-
-    const cardData = await CardService.getCardsByUsername(uName);
-
-    setUName(resData.data.userName);
-    setCardData(cardData);
-    // console.log(uName);
-    // console.log(cardData.data);
-
-    // const transactionData = await CardService.viewCardTransactions(cardNumber)
-    // let lastTransactionId = transactionData.data.slice(-1)[0].transactionId;
-    // let lastTransactionAmt = transactionData.data.slice(-1)[0].transactionAmt;
-
-    // console.log(transactionData.data.slice(-1)[0]);
-    // console.log("Last Transaction ID: " + lastTransactionId);
-    // console.log("Last Transaction Amount: " + lastTransactionAmt);
-  };
-  loadCards();
-
+  useEffect(() => {
+    const loadCards = async () => {
+      const resData = await UserService.getUserByEmail(user.email);
+      const cardData = await CardService.getCardsByUsername(resData.data.userName);
+      setUName(resData.data.userName);
+      setCardData(cardData);
+    };
+    loadCards();
+  }, []);
 
   return (
-    <>
       <Box>
+        <Box textAlign="center" mb={4}>
+          <Typography variant="h2" style={{ color: "#cfd8dc" }}>
+            All Cards
+          </Typography>
+        </Box>
         <Grid container spacing={2}>
-          <Grid item xs={6}>
-            <Card sx={{ minWidth: 275 }}>
-              {cardData.data?.map((card) => (
-                <>
+          {cardData.data?.map((card) => (
+            <Grid item xs={6} key={card.cardNumber}>
+              <Card sx={{ minWidth: 275 }}>
                   <CardContent>
                     <Typography
                       sx={{ fontSize: 14 }}
@@ -90,12 +65,10 @@ export default function CardServices() {
                   <CardActions>
                     <Button size="small">View All Transactions</Button>
                   </CardActions>
-                </>
-              ))}
-            </Card>
-          </Grid>
+              </Card>
+            </Grid>
+          ))}
         </Grid>
       </Box>
-    </>
   );
 }

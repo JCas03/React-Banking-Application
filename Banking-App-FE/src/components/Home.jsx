@@ -17,7 +17,7 @@ import Clock from "./Clock";
 
 function Copyright() {
   return (
-    <Typography variant="body2" color="textSecondary" align="center">
+    <Typography variant="body2" color="#cfd8dc" align="center">
       {"Copyright © "}
       <MaterialLink component={Link} to="/" color="inherit">
         Binary Bank
@@ -58,7 +58,7 @@ const Profile = () => {
         component="h1"
         variant="h2"
         align="center"
-        color="textPrimary"
+        color="#cfd8dc"
         gutterBottom
       >
         Welcome, {user.name}
@@ -70,7 +70,7 @@ const Profile = () => {
         component="h1"
         variant="h2"
         align="center"
-        color="textPrimary"
+        color="#cfd8dc"
         gutterBottom
       >
         Please Sign In
@@ -152,7 +152,7 @@ export default function Album() {
           <Typography
             variant="subtitle1"
             align="center"
-            color="textSecondary"
+            color="#cfd8dc"
             component="p"
           >
             Thank you for choosing Binary Bank!
@@ -210,7 +210,7 @@ export default function Album() {
           <Typography
             variant="subtitle1"
             align="center"
-            color="textSecondary"
+            color="#cfd8dc"
             component="p"
           >
             Thank you for choosing Binary Bank!

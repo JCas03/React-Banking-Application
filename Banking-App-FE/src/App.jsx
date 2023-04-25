@@ -5,6 +5,7 @@ import "./App.css";
 import ResponsiveAppBar from "./components/Header/ResponsiveAppBar";
 import Home from "./components/Home";
 import Card from "./components/CardServices";
+import Profile from "./components/ProfileService";
 import AccountService from "./components/AccountServices";
 import Contact from "./components/ContactPage";
 import Transactions from "./components/Transactions";
@@ -23,6 +24,11 @@ function App() {
           <ResponsiveAppBar />
           <Routes>
             <Route path="/" element={<Home />} />
+            <Route path="/contact" element={<Contact />} />
+            <Route
+              path="/schedule-appointment"
+              element={<AppointmentDisplay />}
+            />
           </Routes>
         </LocalizationProvider>
       </BrowserRouter>
@@ -38,6 +44,7 @@ function App() {
             <Route path="/account-services" element={<AccountService />} />
             <Route path="/contact" element={<Contact />} />
             <Route path="/all-transactions" element={<Transactions />} />
+            <Route path="/profile" element={<Profile/>}/>
             <Route
               path="/schedule-appointment"
               element={<AppointmentDisplay />}
