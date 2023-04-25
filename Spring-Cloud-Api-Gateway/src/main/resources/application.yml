@@ -31,4 +31,4 @@ spring:
 
 web:
   cors:
-    allowed-origin: "http://127.0.0.1:5173/"
+    allowed-origin: "http://localhost:5173"

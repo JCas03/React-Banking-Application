@@ -20,10 +20,16 @@ public class AppointmentService {
         return appointmentRepository.findByUsername(userName);
     }
 
+    public Appointment getAppointmentByEmail(String email) {
+        return appointmentRepository.findByEmail(email);
+    }
+
     public ResponseEntity<String> save(Appointment appointment) {
         appointmentRepository.save(appointment);
         return new ResponseEntity<String>("First Name: " + appointment.getFirstName() +
                 "\nLast Name: " + appointment.getLastName() +
+                "\nEmail: " + appointment.getEmail() +
+                "\nPhone Number: " + appointment.getPhoneNumber() +
                 "\nAppointment Date: " + appointment.getAppointmentDate() +
                 "\nMeeting Details: " + appointment.getDetails(), HttpStatus.CREATED);
     }
