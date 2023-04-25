@@ -10,6 +10,7 @@ import AccountService from "./components/AccountServices";
 import Contact from "./components/ContactPage";
 import Transactions from "./components/Transactions";
 import AppointmentDisplay from "./components/AppointmentDisplay";
+import TransferFunds from "./components/TransferFunds"
 import { LocalizationProvider } from "@mui/x-date-pickers";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { useAuth0 } from "@auth0/auth0-react";
@@ -45,6 +46,7 @@ function App() {
             <Route path="/contact" element={<Contact />} />
             <Route path="/all-transactions" element={<Transactions />} />
             <Route path="/profile" element={<Profile/>}/>
+            <Route path="/transfer-funds" element={<TransferFunds/>}/>
             <Route
               path="/schedule-appointment"
               element={<AppointmentDisplay />}

@@ -84,6 +84,11 @@ const Header = () => {
                       value="/card-services"
                       href="/card-services"
                     />
+                    <Tab
+                      label="Transfer Funds"
+                      value="/transfer-funds"
+                      href="/transfer-funds"
+                    />
                   </>
                 ) : null}
                 <Tab label="Contact Us" value="/contact" href="/contact" />
