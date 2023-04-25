@@ -37,7 +37,7 @@ export default function CardServices() {
         </Box>
         <Grid container spacing={2}>
           {cardData.data?.map((card) => (
-            <Grid item xs={6}>
+            <Grid item xs={6} key={card.cardNumber}>
               <Card sx={{ minWidth: 275 }}>
                   <CardContent>
                     <Typography
