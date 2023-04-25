@@ -29,6 +29,12 @@ public class AppointmentController {
         return appointmentService.getAppointmentByUsername(userName);
     }
 
+    @GetMapping("/appointment/{email}")
+    @ApiOperation(value = "Get Appointment By Email", tags = "GetAppointmentByEmail")
+    public Appointment getAppointmentByEmail(@PathVariable("email") String email) {
+        return appointmentService.getAppointmentByEmail(email);
+    }
+
     @DeleteMapping("/delete-appointment/{userName}")
     @ApiOperation(value = "Delete Appointment By Username", tags = "DeleteAppointmentByUsername")
     public ResponseEntity<String> deleteAppointmentByUsername(@PathVariable("userName") String userName) {
