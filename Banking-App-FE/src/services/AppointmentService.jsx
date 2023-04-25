@@ -5,7 +5,11 @@ class AppointmentService {
 
     createNewAppointment(appointment) {
         
-        return axios.post("http://localhost:8080/appms/new-appointment", appointment);
+        return axios.post("http://localhost:8080/appms/new-appointment", appointment, {
+            headers: {
+                'Content-Type': 'application/json',
+            }
+        });
     }
 
     getAppointmentsByUsername(username) {

@@ -16,18 +16,13 @@ import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import "./css/AccountServices.css";
 import AccountService from "../services/AccountService";
-import { useState, react } from "react";
+import { useState, react, useEffect } from "react";
 import './css/AccountServices.css'
 import { useAuth0 } from "@auth0/auth0-react";
 import UserService from "../services/UserService";
 
 function createData(store, amount, address, date) {
   return { store, amount, address, date };
-}
-export function accClearState() {
-  setAccData();
-  console.log(accData);
-  console.log("The State has been cleared");
 }
 
 const rows = [
@@ -36,45 +31,71 @@ const rows = [
   createData("Louis Vutton", 600.0, "123 Louis Vutton Blv.", "08-16-2023"),
 ];
 export default function AccountServices() {
-  const [accData, setAccData] = useState("Loading...");
+  const [accData, setAccData] = useState("Loading Data...");
   const { user, isAuthenticated, isLoading } = useAuth0();
-  const [uName, setUName] = useState("Loading...");
+  const [uName, setUName] = useState("Loading Username...");
+  const [accNum, setAccNum] = useState();
 
-  const loadAccounts = async () => {
 
-    const resData = await UserService.getUserByEmail(user.email)
-    setUName(resData.data.userName)
-
-    let pullAccNum = await AccountService.getAllAccountsByUsername(uName);
-    console.log(pullAccNum.data);
-    console.log(pullAccNum.data[0].accountNumber);
-    let accNum = pullAccNum.data[0].accountNumber;
-    
-    
-    let accsData = await AccountService.getAllAccountsByAccountNumber(accNum);
-    setAccData(accsData);
-    console.log(accData);
-
+  useEffect(()=>{
+     UserService.getUserByEmail(user.email)
+    .then(res => res.data)
+    .then(data => setUName(data.userName))
     console.log(uName);
 
+    AccountService.getAllAccountsByUsername(uName)
+    .then(res => res.data)
+    .then(data => setAccNum(data[0].accountNumber));
+    console.log(accNum);
+    
+    AccountService.getAllAccountsByAccountNumber(accNum)
+    .then(res => setAccData(res))
+    console.log(accData);
+
+
   
     
   
   
-    const transactionData = await AccountService.viewAllTransactionsOnAccount(
-      accNum
-    );
-    let latestTransaction = transactionData.data.slice(-1)[0];
-    let secLatestTransaction = transactionData.data.slice(1)[0];
-    let thirdLatestTransaction = transactionData.data.slice(0)[0];
+    // const transactionData =  AccountService.viewAllTransactionsOnAccount(
+    //   accNum
+    // );
+    // let latestTransaction = transactionData.data.slice(-1)[0];
+    // let secLatestTransaction = transactionData.data.slice(1)[0];
+    // let thirdLatestTransaction = transactionData.data.slice(0)[0];
 
     // console.log(transactionData.data);
     // console.log(latestTransaction);
     // console.log(latestTransaction.accountNumber)
     // console.log(secLatestTransaction);
     // console.log(thirdLatestTransaction);
-  };
-  loadAccounts();
+  }, [uName, accNum, accData])
+
+ 
+  
+    
+  
+  
+  //   // const transactionData = await AccountService.viewAllTransactionsOnAccount(
+  //   //   accNum
+  //   // );
+  //   // let latestTransaction = transactionData.data.slice(-1)[0];
+  //   // let secLatestTransaction = transactionData.data.slice(1)[0];
+  //   // let thirdLatestTransaction = transactionData.data.slice(0)[0];
+
+  //   // // console.log(transactionData.data);
+  //   // // console.log(latestTransaction);
+  //   // // console.log(latestTransaction.accountNumber)
+  //   // // console.log(secLatestTransaction);
+  //   // // console.log(thirdLatestTransaction);
+  // };
+
+  
+
+
+
+ 
+  
 
 
   return (
