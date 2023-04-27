@@ -1,5 +1,6 @@
 import React, {useState} from "react";
 import './css/TransferFunds.css';
+import AccountService from "../services/AccountService";
 
 export default function TransferFunds() {
 
@@ -8,6 +9,12 @@ export default function TransferFunds() {
     recipientAccountNumber: '',
     recipientAccountName: ''
   });
+  const handleTransfer = (event) => {
+    event.preventDefault();
+    AccountService.transferFunds(/*AccountNumber, ToAccountNumber, Transaction*/)
+    // console.log("The Following Transaction Has Been Made: Account Number: " + AccountNumber +
+    //  " To Account Number: "+ToAccountNumber+" Ammount: " + Transaction);
+  };
 
   const [isConfirmationModalOpen, setIsConfirmationModalOpen] = useState(false);
 
@@ -86,7 +93,7 @@ export default function TransferFunds() {
             <p>Recipient's Account Name: {transferDetails.recipientAccountName}</p>
             <div className="modal-buttons">
               <button onClick={handleConfirmationModalClose}>Cancel</button>
-              <button>Confirm Transfer</button>
+              <button onClick={handleTransfer}>Confirm Transfer</button>
             </div>
           </div>
         </div>
