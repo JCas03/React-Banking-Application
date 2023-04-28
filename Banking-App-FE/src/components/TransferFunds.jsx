@@ -4,11 +4,10 @@ import AccountService from "../services/AccountService";
 
 export default function TransferFunds() {
 
-  const [transferDetails, setTransferDetails] = useState({
-    amount: '',
-    recipientAccountNumber: '',
-    recipientAccountName: ''
-  });
+  const [outgoingAccountNumber, setOutgoingAccountNumber] = useState("");
+  const [incomingAccountNumber, setIncomingAccountNumber] = useState();
+  const [transferAmount, setTransferAmount] = useState("");
+  const [transactionDateTime, setTransactionDateTime] = useState("");
   const handleTransfer = (event) => {
     event.preventDefault();
     AccountService.transferFunds(/*AccountNumber, ToAccountNumber, Transaction*/)
@@ -36,6 +35,13 @@ export default function TransferFunds() {
 
   const handleTransferSubmit = (event) => {
     event.preventDefault();
+    let transaction = {
+      outgoingAccountNumber: outgoingAccountNumber,
+      incomingAccountNumber: incomingAccountNumber,
+      transferAmount: transferAmount,
+      transactionDateTime: transactionDateTime
+    };
+    AccountService.transferFunds(outgoingAccountNumber,incomingAccountNumber,JSON.stringify(transaction));
     handleConfirmationModalOpen();
   };
 
