@@ -46,6 +46,16 @@ export default function TransferFunds() {
   };
 
   const isFormValid = transferDetails.amount !== '' && transferDetails.recipientAccountNumber !== '' && transferDetails.recipientAccountName !== '';
+  
+  const handleTransferAmmountChange = (event) =>{
+    setTransferAmount(event.target.value)
+  }
+  const handleOutgoingAccountNumberChange = (event) =>{
+    setOutgoingAccountNumber(event.target.value)
+  }
+  const handleIncomingAccountNumberChange = (event) =>{
+    setIncomingAccountNumber(event.target.value)
+  }
 
   return (
     <div>
@@ -58,7 +68,7 @@ export default function TransferFunds() {
             id="transferAmount"
             name="transferAmount"
             value={transferAmount}
-            onChange={handleInputChange}
+            onChange={handleTransferAmmountChange}
             required
           />
         </div>
@@ -70,7 +80,7 @@ export default function TransferFunds() {
             id="incomingAccountNumber"
             name="incomingAccountNumber"
             value={incomingAccountNumber}
-            onChange={handleInputChange}
+            onChange={handleIncomingAccountNumberChange}
             required
           />
         </div>
@@ -82,7 +92,7 @@ export default function TransferFunds() {
             id="outgoingAccountNumber"
             name="outgoingAccountNumber"
             value={outgoingAccountNumber}
-            onChange={handleInputChange}
+            onChange={handleOutgoingAccountNumberChange}
             required
           />
         </div>
