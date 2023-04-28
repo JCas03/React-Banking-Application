@@ -10,9 +10,9 @@ export default function TransferFunds() {
   const [transactionDateTime, setTransactionDateTime] = useState("");
   const handleTransfer = (event) => {
     event.preventDefault();
-    AccountService.transferFunds(/*AccountNumber, ToAccountNumber, Transaction*/)
-    // console.log("The Following Transaction Has Been Made: Account Number: " + AccountNumber +
-    //  " To Account Number: "+ToAccountNumber+" Ammount: " + Transaction);
+    AccountService.transferFunds(outgoingAccountNumber, incomingAccountNumber, transferAmount)
+    console.log("The Following Transaction Has Been Made: Account Number: " + outgoingAccountNumber +
+     " To Account Number: "+incomingAccountNumber+" Ammount: " + transferAmount);
   };
 
   const [isConfirmationModalOpen, setIsConfirmationModalOpen] = useState(false);
