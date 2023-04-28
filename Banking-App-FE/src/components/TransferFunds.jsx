@@ -94,9 +94,9 @@ export default function TransferFunds() {
         <div className="modal">
           <div className="modal-content">
             <h2>Confirm Transfer Details</h2>
-            <p>Amount: {transferDetails.amount}</p>
-            <p>Recipient's Account Number: {transferDetails.recipientAccountNumber}</p>
-            <p>Recipient's Account Name: {transferDetails.recipientAccountName}</p>
+            <p>Amount: {transferAmount}</p>
+            <p>Outgoing Account Number: {outgoingAccountNumber}</p>
+            <p>Incoming Account Number: {incomingAccountNumber}</p>
             <div className="modal-buttons">
               <button onClick={handleConfirmationModalClose}>Cancel</button>
               <button onClick={handleTransfer}>Confirm Transfer</button>
