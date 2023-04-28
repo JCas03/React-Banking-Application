@@ -45,7 +45,7 @@ export default function TransferFunds() {
     handleConfirmationModalOpen();
   };
 
-  const isFormValid = transferDetails.amount !== '' && transferDetails.recipientAccountNumber !== '' && transferDetails.recipientAccountName !== '';
+  const isFormValid = transferAmount !== '' && incomingAccountNumber !== '';
   
   const handleTransferAmmountChange = (event) =>{
     setTransferAmount(event.target.value)
