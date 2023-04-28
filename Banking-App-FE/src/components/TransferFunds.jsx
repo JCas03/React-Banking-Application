@@ -52,36 +52,36 @@ export default function TransferFunds() {
       <h1 className="title">Transfer Funds</h1>
       <form onSubmit={handleTransferSubmit} className="transfer-form">
         <div className="form-group">
-          <label htmlFor="amount">Amount:</label>
+          <label htmlFor="transferAmount">Amount:</label>
           <input
             type="number"
-            id="amount"
-            name="amount"
-            value={transferDetails.amount}
+            id="transferAmount"
+            name="transferAmount"
+            value={transferAmount}
             onChange={handleInputChange}
             required
           />
         </div>
 
         <div className="form-group">
-          <label htmlFor="recipientAccountNumber">Recipient's Account Number:</label>
+          <label htmlFor="incomingAccountNumber">Incoming Account Number:</label>
           <input
             type="text"
-            id="recipientAccountNumber"
-            name="recipientAccountNumber"
-            value={transferDetails.recipientAccountNumber}
+            id="incomingAccountNumber"
+            name="incomingAccountNumber"
+            value={incomingAccountNumber}
             onChange={handleInputChange}
             required
           />
         </div>
 
         <div className="form-group">
-          <label htmlFor="recipientAccountName">Recipient's Account Name:</label>
+          <label htmlFor="outgoingAccountNumber">Outgoing Account Number:</label>
           <input
             type="text"
-            id="recipientAccountName"
-            name="recipientAccountName"
-            value={transferDetails.recipientAccountName}
+            id="outgoingAccountNumber"
+            name="outgoingAccountNumber"
+            value={outgoingAccountNumber}
             onChange={handleInputChange}
             required
           />
