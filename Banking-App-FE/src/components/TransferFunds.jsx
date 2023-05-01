@@ -10,9 +10,13 @@ export default function TransferFunds() {
   const [transactionDateTime, setTransactionDateTime] = useState("");
   const handleTransfer = (event) => {
     event.preventDefault();
-    AccountService.transferFunds(outgoingAccountNumber, incomingAccountNumber, transferAmount)
+    AccountService.transferFunds(outgoingAccountNumber, incomingAccountNumber, JSON.stringify(transferAmount), {
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    })
     console.log("The Following Transaction Has Been Made: Account Number: " + outgoingAccountNumber +
-     " To Account Number: "+incomingAccountNumber+" Ammount: " + transferAmount);
+     " To Account Number: "+incomingAccountNumber+" Ammount: " + JSON.stringify(transferAmount));
   };
 
   const [isConfirmationModalOpen, setIsConfirmationModalOpen] = useState(false);
@@ -35,13 +39,6 @@ export default function TransferFunds() {
 
   const handleTransferSubmit = (event) => {
     event.preventDefault();
-    let transaction = {
-      outgoingAccountNumber: outgoingAccountNumber,
-      incomingAccountNumber: incomingAccountNumber,
-      transferAmount: transferAmount,
-      transactionDateTime: transactionDateTime
-    };
-    AccountService.transferFunds(outgoingAccountNumber,incomingAccountNumber,JSON.stringify(transaction));
     handleConfirmationModalOpen();
   };
 
