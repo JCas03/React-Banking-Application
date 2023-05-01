@@ -15,20 +15,20 @@ import java.time.LocalDateTime;
 public class Transaction {
 
     @Id
-    @ApiModelProperty(notes = "Transaction Id",name="TransactionId",required=true,value="1")
+    @ApiModelProperty(notes = "Transaction Id",name="TransactionId",value="1")
     private String transactionId;
-    @ApiModelProperty(notes = "Account Number",name="AccountNumber",required=true,value="1")
+    @ApiModelProperty(notes = "Account Number",name="AccountNumber",value="1")
     private String accountNumber;
-    @ApiModelProperty(notes = "Outgoing Account Number",name="OutgoingAccountNumber",required=true,value="1")
+    @ApiModelProperty(notes = "Outgoing Account Number",name="OutgoingAccountNumber",value="1")
     private String outgoingAccountNumber;
-    @ApiModelProperty(notes = "Incoming Account Number",name="IncomingAccountNumber",required=true,value="1")
+    @ApiModelProperty(notes = "Incoming Account Number",name="IncomingAccountNumber",value="1")
     private String incomingAccountNumber;
-    @ApiModelProperty(notes = "Withdrawal Amount",name="WithdrawalAmount",required=true,value="9999.99")
+    @ApiModelProperty(notes = "Withdrawal Amount",name="WithdrawalAmount",value="9999.99")
     private Double withdrawalAmount;
-    @ApiModelProperty(notes = "Deposit Amount",name="DepositAmount",required=true,value="9999.99")
+    @ApiModelProperty(notes = "Deposit Amount",name="DepositAmount",value="9999.99")
     private Double depositAmount;
-    @ApiModelProperty(notes = "Transfer Amount",name="TransferAmount",required=true,value="9999.99")
+    @ApiModelProperty(notes = "Transfer Amount",name="TransferAmount",value="9999.99")
     private Double transferAmount;
-    @ApiModelProperty(notes = "Transaction Date Time",name="TransactionDateTime",required=true,value="99-99-9999")
+    @ApiModelProperty(notes = "Transaction Date Time",name="TransactionDateTime",value="99-99-9999")
     private LocalDateTime transactionDateTime;
 }
