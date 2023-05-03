@@ -89,6 +89,11 @@ const Header = () => {
                       value="/transfer-funds"
                       href="/transfer-funds"
                     />
+                    <Tab
+                      label="Profile"
+                      value="/profile"
+                      href="/profile"
+                    />
                   </>
                 ) : null}
                 <Tab label="Contact Us" value="/contact" href="/contact" />

@@ -7,6 +7,8 @@ import Typography from '@material-ui/core/Typography';
 function ProfileService() {
   const [firstName, setFirstName] = useState("First Name");
   const [lastName, setLastName] = useState("Last Name");
+  const [username, setUsername] = useState("Username");
+  const [password, setPassword] = useState("Password")
 
   const handleFirstNameChange = (event) => {
     setFirstName(event.target.value);
@@ -15,11 +17,17 @@ function ProfileService() {
   const handleLastNameChange = (event) => {
     setLastName(event.target.value);
   };
+  const handleUsernameChange = (event) => {
+    setUsername(event.target.value);
+  };
+  const handlePasswordChange = (event) => {
+    setPassword(event.target.value);
+  };
 
   const handleSubmit = (event) => {
     event.preventDefault();
     // Save the first name and last name to the state or do something else with it
-    console.log(`First name: ${firstName}, Last name: ${lastName}`);
+    console.log(`First name: ${firstName}, Last name: ${lastName}, Username: ${username}, Password: ${password}`);
   };
 
   return (
@@ -57,6 +65,40 @@ function ProfileService() {
             margin="normal"
             value={lastName}
             onChange={handleLastNameChange}
+            style={{
+              backgroundColor: "#cfd8dc",
+              color: "#cfd8dc",
+              borderRadius: "5px",
+            }}
+          />
+        </div>
+        <div>
+          <InputLabel htmlFor="username" style={{ color: "#cfd8dc" }}>
+            Username
+          </InputLabel>
+          <TextField
+            id="username"
+            variant="outlined"
+            margin="normal"
+            value={username}
+            onChange={handleUsernameChange}
+            style={{
+              backgroundColor: "#cfd8dc",
+              color: "#cfd8dc",
+              borderRadius: "5px",
+            }}
+          />
+        </div>
+        <div>
+          <InputLabel htmlFor="password" style={{ color: "#cfd8dc" }}>
+            Password
+          </InputLabel>
+          <TextField
+            id="password"
+            variant="outlined"
+            margin="normal"
+            value={password}
+            onChange={handlePasswordChange}
             style={{
               backgroundColor: "#cfd8dc",
               color: "#cfd8dc",
