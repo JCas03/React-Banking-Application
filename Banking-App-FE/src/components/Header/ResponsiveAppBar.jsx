@@ -90,6 +90,11 @@ const Header = () => {
                       href="/transfer-funds"
                     />
                     <Tab
+                      label="Fund Services"
+                      value="/fund-services"
+                      href="/fund-services"
+                    />
+                    <Tab
                       label="Profile"
                       value="/profile"
                       href="/profile"
