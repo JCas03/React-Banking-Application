@@ -64,7 +64,7 @@ export default function FundServices() {
 
   return (
     <div style={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
-      <h1>Banking Application</h1>
+      <h1>Funds Service</h1>
       <p>Balance: {balance}</p>
       <div style={{ marginBottom: "10px" }}>
         <Select
