@@ -11,7 +11,12 @@ class TransactionService {
     }
 
     transferFunds(fromAccountNumber, toAccountNumber, transaction) {
-        return axios.post(`http://localhost:8080/accms/transfer/${fromAccountNumber}/${toAccountNumber}`, transaction);
+        return axios.post(`http://localhost:8080/accms/transfer/${fromAccountNumber}/${toAccountNumber}`, transaction, {
+            headers: {
+                "Content-Type": "application/json",
+                'Accept': 'application/json'
+              },
+        });
     }
 
     viewAllTransactionByAccountNumber(accountNumber, transaction) {

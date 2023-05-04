@@ -14,6 +14,7 @@ import TransferFunds from "./components/TransferFunds"
 import { LocalizationProvider } from "@mui/x-date-pickers";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { useAuth0 } from "@auth0/auth0-react";
+import FundServices from "./components/FundServices";
 
 function App() {
   const { user } = useAuth0();
@@ -47,6 +48,7 @@ function App() {
             <Route path="/all-transactions" element={<Transactions />} />
             <Route path="/profile" element={<Profile/>}/>
             <Route path="/transfer-funds" element={<TransferFunds/>}/>
+            <Route path="/fund-services" element={<FundServices/>}/>
             <Route
               path="/schedule-appointment"
               element={<AppointmentDisplay />}
