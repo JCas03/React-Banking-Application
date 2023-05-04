@@ -12,6 +12,8 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function FundServices() {
+  
+
   const classes = useStyles();
   const [balance, setBalance] = useState(0);
   const [amount, setAmount] = useState(0);
@@ -20,6 +22,7 @@ export default function FundServices() {
   const [accData, setAccData] = useState([]);
   const [accId, setAccId] = useState();
   const { user } = useAuth0();
+  
 
   useEffect(() => {
     UserService.getUserByEmail(user.email)
@@ -41,6 +44,9 @@ export default function FundServices() {
       });
     }
   }, [accNum]);
+  useEffect(() => {
+    console.log(accId);
+  }, [accId]);
 
   const deposit = () => {
     setBalance(balance + amount);
@@ -54,28 +60,40 @@ export default function FundServices() {
 
   const handleAccountChange = (event) => {
     setAccId(event.target.value);
-    console.log(accId);
   };
 
   return (
-    <div>
+    <div style={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
       <h1>Banking Application</h1>
       <p>Balance: {balance}</p>
-      <Select
-        value={accNum}
-        onChange={handleAccountChange}
-        className={classes.select}
-        defaultValue={""}
-      >
-        {accData && accData.data?.map((account) => (
-          <MenuItem key={account.accountName} value={account.id}>
-            {account.accountName} ({account.id})
-          </MenuItem>
-        ))}
-      </Select>
-      <input type="number" value={amount} onChange={(e) => setAmount(+e.target.value)} />
-      <button onClick={deposit}>Deposit</button>
-      <button onClick={withdraw}>Withdraw</button>
+      <div style={{ marginBottom: "10px" }}>
+        <Select
+          value={accId}
+          onChange={handleAccountChange}
+          className={classes.select}
+          defaultValue={""}
+          style={{ backgroundColor: "#cfd8dc", marginRight: "10px", borderRadius: "5px" }}
+          inputProps={{
+            style: {
+              borderRadius: "5px",
+              backgroundColor: "#cfd8dc",
+              padding: "10px"
+            }
+          }}
+        >
+          {accData && accData.data?.map((account) => (
+            <MenuItem key={account.accountName} value={account.id} >
+              {account.accountName} ({account.id})
+            </MenuItem>
+          ))}
+        </Select>
+        <input type="number" value={amount} onChange={(e) => setAmount(+e.target.value)} style={{ marginRight: "10px" }} />
+        <button onClick={deposit} style={{ marginRight: "10px", backgroundColor: "#063970", color: "#cfd8dc" }}>Deposit</button>
+        <button onClick={withdraw} style={{ backgroundColor: "#063970", color: "#cfd8dc" }}>Withdraw</button>
+      </div>
     </div>
   );
+  
+  
+  
 };
