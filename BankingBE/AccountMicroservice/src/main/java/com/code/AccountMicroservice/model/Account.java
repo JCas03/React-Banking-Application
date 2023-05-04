@@ -14,7 +14,7 @@ public class Account {
 
     @Id
     @ApiModelProperty(notes = "Account Id",name="AccountId",required=true,value="1")
-    private String id;
+    private String accountId;
     @ApiModelProperty(notes = "Account Number",name="AccountNumber",required=true,value="1")
     private String accountNumber;
     @ApiModelProperty(notes = "Account Type",name="AccountType",required=true,value="Test Account Type")

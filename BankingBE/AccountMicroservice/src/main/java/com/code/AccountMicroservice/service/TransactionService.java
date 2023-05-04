@@ -22,7 +22,7 @@ public class TransactionService {
     @Autowired
     private AccountRepository accountRepository;
 
-    public ResponseEntity<String> deposit(String accountNumber, Transaction transaction){
+    /*public ResponseEntity<String> deposit(String accountNumber, Transaction transaction){
         Account accountData = accountRepository.findByAccountNumber(accountNumber);
 
         transactionRepository.save(transaction);
@@ -33,7 +33,20 @@ public class TransactionService {
         accountRepository.save(accountData);
         return new ResponseEntity<String>("Account Number: "+ accountData.getAccountNumber() +
                 "\nDeposit Amount: " + transaction.getDepositAmount(),HttpStatus.OK);
+    }*/
+    public ResponseEntity<String> deposit(String id, Transaction transaction){
+        Account accountData = accountRepository.findAccountByAccountId(id);
+
+        transactionRepository.save(transaction);
+        double depositAmt = transaction.getDepositAmount();
+        double newBalance = accountData.getAvailableBalance() + depositAmt;
+        System.out.println(depositAmt + accountData.getAvailableBalance());
+        accountData.setAvailableBalance(newBalance);
+        accountRepository.save(accountData);
+        return new ResponseEntity<String>("Account Number: "+ accountData.getAccountNumber() +
+                "\nDeposit Amount: " + transaction.getDepositAmount(),HttpStatus.OK);
     }
+
     public ResponseEntity<String> withdrawal(String accountNumber, Transaction transaction){
         Account accountData = accountRepository.findByAccountNumber(accountNumber);
         transaction.setTransactionDateTime(LocalDateTime.now());
