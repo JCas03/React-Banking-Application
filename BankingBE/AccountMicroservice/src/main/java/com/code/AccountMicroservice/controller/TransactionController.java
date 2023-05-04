@@ -28,19 +28,19 @@ public class TransactionController {
     @Autowired
     private TransactionService transactionService;
 
-    @PostMapping("/deposit/{accountNumber}")
+    @PostMapping("/deposit/{accountId}")
     @ApiOperation(value = "Deposit", tags = "Deposit")
-    public ResponseEntity<String> deposit(@PathVariable("accountNumber") String accountNumber,
+    public ResponseEntity<String> deposit(@PathVariable("accountId") String accountId,
                                           @RequestBody Transaction transaction){
-        rabbitMQSender.send(transaction);
-        return transactionService.deposit(accountNumber, transaction);
+        /*rabbitMQSender.send(transaction);*/
+        return transactionService.deposit(accountId, transaction);
     }
 
-    @PostMapping("/withdrawal/{accountNumber}")
+    @PostMapping("/withdrawal/{accountId}")
     @ApiOperation(value = "withdrawal", tags = "withdrawal")
-    public ResponseEntity<String> withdrawal(@PathVariable("accountNumber") String accountNumber,
+    public ResponseEntity<String> withdrawal(@PathVariable("accountId") String accountId,
                                              @RequestBody Transaction transaction) {
-        return transactionService.withdrawal(accountNumber, transaction);
+        return transactionService.withdrawal(accountId, transaction);
     }
 
     @PostMapping("/transfer/{fromAccountNumber}/{toAccountNumber}")

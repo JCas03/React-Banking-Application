@@ -47,8 +47,8 @@ public class TransactionService {
                 "\nDeposit Amount: " + transaction.getDepositAmount(),HttpStatus.OK);
     }
 
-    public ResponseEntity<String> withdrawal(String accountNumber, Transaction transaction){
-        Account accountData = accountRepository.findByAccountNumber(accountNumber);
+    public ResponseEntity<String> withdrawal(String id, Transaction transaction){
+        Account accountData = accountRepository.findAccountByAccountId(id);
         transaction.setTransactionDateTime(LocalDateTime.now());
 
         transactionRepository.save(transaction);
