@@ -46,6 +46,11 @@ public class AccountService {
         return accountRepository.findAllAccountsByUsername(userName);
     }
 
+    public Account findByAccountId (String id) {
+        Account account = accountRepository.findAccountByAccountId(id);
+        return account;
+    }
+
     /*public ResponseEntity<String> depositSuccess(String accountNumber, Double depositAmount) {
         Account _account = accountRepository.findByAccountNumber(accountNumber);
 

@@ -34,8 +34,8 @@ public class TransactionService {
         return new ResponseEntity<String>("Account Number: "+ accountData.getAccountNumber() +
                 "\nDeposit Amount: " + transaction.getDepositAmount(),HttpStatus.OK);
     }*/
-    public ResponseEntity<String> deposit(String id, Transaction transaction){
-        Account accountData = accountRepository.findAccountByAccountId(id);
+    public ResponseEntity<String> deposit(String accountId, Transaction transaction){
+        Account accountData = accountRepository.findAccountByAccountId(accountId);
 
         transactionRepository.save(transaction);
         double depositAmt = transaction.getDepositAmount();
@@ -47,8 +47,8 @@ public class TransactionService {
                 "\nDeposit Amount: " + transaction.getDepositAmount(),HttpStatus.OK);
     }
 
-    public ResponseEntity<String> withdrawal(String accountNumber, Transaction transaction){
-        Account accountData = accountRepository.findByAccountNumber(accountNumber);
+    public ResponseEntity<String> withdrawal(String accountId, Transaction transaction){
+        Account accountData = accountRepository.findAccountByAccountId(accountId);
         transaction.setTransactionDateTime(LocalDateTime.now());
 
         transactionRepository.save(transaction);
@@ -81,7 +81,32 @@ public class TransactionService {
                 + "\nTransfer Amount: " + transaction.getTransferAmount(),HttpStatus.OK);
     }
 
+    public ResponseEntity<String> transferFundsByAccountId(String fromAccountId, String toAccountId, Transaction transaction){
+        Account fromAccountData = accountRepository.findAccountByAccountId(fromAccountId);
+        Account toAccountData = accountRepository.findAccountByAccountId(toAccountId);
+        transaction.setTransactionDateTime(LocalDateTime.now());
+
+        transactionRepository.save(transaction);
+        double transferAmount = transaction.getTransferAmount();
+        double fromNewBalance = fromAccountData.getAvailableBalance() - transferAmount;
+        double toNewBalance = toAccountData.getAvailableBalance() + transferAmount;
+        fromAccountData.setAvailableBalance(fromNewBalance);
+        toAccountData.setAvailableBalance(toNewBalance);
+
+        accountRepository.save(fromAccountData);
+        accountRepository.save(toAccountData);
+        return new ResponseEntity<String>("From Account Number: " + fromAccountData.getAccountNumber()
+                + "\nTo Account Number: " + toAccountData.getAccountNumber()
+                + "\nFrom Account Id: " + toAccountData.getAccountId()
+                + "\nTo Account Id: " + toAccountData.getAccountId()
+                + "\nTransfer Amount: " + transaction.getTransferAmount(),HttpStatus.OK);
+    }
+
     public List<Transaction> viewAllTransactions(String accountNumber) {
         return transactionRepository.findByAccountNumber(accountNumber);
+    }
+
+    public List<Transaction> viewTransactionsByAccountId(String accountId) {
+        return transactionRepository.findByAccountId(accountId);
     }
 }

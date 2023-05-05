@@ -19,6 +19,8 @@ public class Transaction {
     private String transactionId;
     @ApiModelProperty(notes = "Account Number",name="AccountNumber",value="1")
     private String accountNumber;
+    @ApiModelProperty(notes = "Account Id",name="AccountId",required=true,value="1")
+    private String accountId;
     @ApiModelProperty(notes = "Outgoing Account Number",name="OutgoingAccountNumber",value="1")
     private String outgoingAccountNumber;
     @ApiModelProperty(notes = "Incoming Account Number",name="IncomingAccountNumber",value="1")

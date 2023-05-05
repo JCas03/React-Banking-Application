@@ -37,6 +37,12 @@ public class AccountController {
         return accountService.findByAccountNumber(accountNumber);
     }
 
+    @GetMapping("/accountById/{accountId}")
+    @ApiOperation(value = "Get Account by Account Id ", tags = "GetAccountByAccountId")
+    public Account getAccountByAccountId(@PathVariable("accountId") String accountId) {
+        return accountService.findByAccountId(accountId);
+    }
+
     @GetMapping("/all-accounts/{accountNumber}")
     @ApiOperation(value = "Get Account by Account Number ", tags = "GetAccountByAccountNumber")
     public List<Account> getAllAccountsByAccountNumber(@PathVariable("accountNumber") String accountNumber) {
