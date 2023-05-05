@@ -56,4 +56,10 @@ public class TransactionController {
     public List<Transaction> viewAllTransactions(@PathVariable("accountNumber") String accountNumber) {
         return transactionService.viewAllTransactions(accountNumber);
     }
+
+    @GetMapping("/view-transactions-by-accountId/{accountId}")
+    @ApiOperation(value = "View Transactions By AccountId", tags = "ViewTransactionsByAccountId")
+    public List<Transaction> viewAllTransactionsById(@PathVariable("accountId") String accountId) {
+        return transactionService.viewTransactionsByAccountId(accountId);
+    }
 }
