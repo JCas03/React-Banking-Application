@@ -49,17 +49,26 @@ export default function FundServices() {
   }, [accId]);
 
   const deposit = () => {
-    setBalance(balance + amount);
-    setAmount(0);
+    AccountService.deposit(accId, amount, options);
+    console.log(accId);
+    console.log(amount);
+    // setBalance(balance + amount);
+    // setAmount(0);
   };
 
   const withdraw = () => {
-    setBalance(balance - amount);
-    setAmount(0);
+    AccountService.withdrawal(accId, amount, options);
+    console.log(accId);
+    console.log(amount);
+    // setBalance(balance - amount);
+    // setAmount(0);
   };
 
   const handleAccountChange = (event) => {
     setAccId(event.target.value);
+  };
+  const options = {
+    headers: { 'Content-Type': 'application/json' }
   };
 
   return (
@@ -87,7 +96,7 @@ export default function FundServices() {
             </MenuItem>
           ))}
         </Select>
-        <input type="number" value={amount} onChange={(e) => setAmount(+e.target.value)} style={{ marginRight: "10px" }} />
+        <input type="number" value={amount} onChange={(e) => setAmount(e.target.value)} style={{ marginRight: "10px" }} />
         <button onClick={deposit} style={{ marginRight: "10px", backgroundColor: "#063970", color: "#cfd8dc" }}>Deposit</button>
         <button onClick={withdraw} style={{ backgroundColor: "#063970", color: "#cfd8dc" }}>Withdraw</button>
       </div>
