@@ -33,13 +33,14 @@ export default function FundServices() {
   useEffect(() => {
     AccountService.getAllAccountsByUsername(uName)
       .then((res) => res.data)
-      .then((data) => { setAccData(data); setAccNum(data[0].accountNumber); });
+      .then((data) => { setAccData(data); setAccNum(data[0].accountNumber);});
   }, [uName]);
 
   useEffect(() => {
     if (accNum) {
       AccountService.getAllAccountsByAccountNumber(accNum).then((res) => {
         setAccData(res);
+        console.log(accData);
         setBalance(res.balance);
       });
     }
@@ -47,6 +48,9 @@ export default function FundServices() {
   useEffect(() => {
     console.log(accId);
   }, [accId]);
+  useEffect(() => {
+    console.log(accData);
+  }, [accData]);
 
   const deposit = () => {
     AccountService.deposit(accId, amount, options);
@@ -90,9 +94,9 @@ export default function FundServices() {
             }
           }}
         >
-          {accData && accData.data?.map((account) => (
-            <MenuItem key={account.accountName} value={account.id} >
-              {account.accountName} ({account.id})
+          {accData.data?.map((account) => (
+            <MenuItem key={account.accountName} value={account.accountId} >
+              {account.accountName} ({account.accountId})
             </MenuItem>
           ))}
         </Select>
