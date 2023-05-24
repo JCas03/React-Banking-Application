@@ -32,5 +32,5 @@ spring:
 web:
   cors:
     allowed-origin: "http://127.0.0.1:5173"
-    allowed-mehtods: "POST, GET, OPTIONS, DELETE, PUT"
+    allowed-methods: "POST, GET, OPTIONS, DELETE, PUT"
     allowed-headers: "Origin, X-Api-Key, X-Requested-With, Content-Type, Accept, Authorization"
